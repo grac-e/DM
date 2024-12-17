@@ -1,0 +1,41 @@
+﻿Business_Sector,Business_Function,Business_Process,Business_Activity,Business_Resource
+Manufacturing,Production,Material Procurement,Ordering raw materials,"Supplier Relationship Management (SRM) systems, ERP"
+Manufacturing,Production,Inventory Management,Tracking inventory levels,"Warehouse Management Systems (WMS), RFID"
+Manufacturing,Production,Production Scheduling,Creating production schedules,"APS systems, ERP"
+Manufacturing,Production,Quality Control,Inspecting products,"Automated inspection systems, SPC software"
+Manufacturing,Production,Maintenance Management,Scheduling maintenance,"CMMS, IoT sensors"
+Manufacturing,Production,Production Line Optimization,Balancing production lines,"Simulation software, Lean tools"
+Manufacturing,Production,Energy Management,Monitoring energy usage,Energy Management Systems (EMS)
+Manufacturing,Production,Process Optimization,Analyzing processes,"Process Mining Tools, Lean tools"
+Manufacturing,Production,Equipment Management,Tracking equipment usage,"IoT sensors, CMMS"
+Manufacturing,Production,Supply Chain Management,Coordinating with suppliers,Supply Chain Management (SCM) software
+Manufacturing,Production,Order Fulfillment,Processing orders,Order Management Systems (OMS)
+Manufacturing,Production,Logistics Management,Managing shipments,Transportation Management Systems (TMS)
+Manufacturing,Production,Workforce Management,Scheduling shifts,Workforce Management Systems (WMS)
+Manufacturing,Production,Product Lifecycle Management,Managing product data,Product Lifecycle Management (PLM) software
+Manufacturing,Production,Compliance Management,Ensuring regulatory compliance,Compliance Management Systems
+Manufacturing,Production,Product Design,Creating product designs,CAD software
+Manufacturing,Production,Customer Relationship Management,Managing customer interactions,CRM software
+Manufacturing,Production,Financial Management,Managing finances,ERP financial modules
+Manufacturing,Production,Research and Development (R&D),Developing new products,R&D Management Systems
+Manufacturing,Production,Sales Management,Managing sales pipeline,Sales Management Software
+Education,Administration,Student Enrollment,Processing enrollment applications,Student Information Systems (SIS)
+Education,Administration,Course Scheduling,Scheduling classes,Course Management Systems
+Education,Teaching,Curriculum Development,Designing course content,Curriculum Management Software
+Education,Teaching,Classroom Instruction,Delivering lectures,Learning Management Systems (LMS)
+Education,Administration,Faculty Management,Managing faculty records,Faculty Management Systems
+Education,Administration,Facility Management,Maintaining school facilities,Facility Management Software
+Education,Administration,Financial Management,Managing school finances,Financial Management Systems
+Education,Student Services,Counseling Services,Providing student counseling,Counseling Management Systems
+Education,Student Services,Career Services,Assisting with career planning,Career Management Systems
+Education,Administration,Library Management,Managing library resources,Library Management Systems
+Education,Teaching,Online Learning,Conducting online classes,Online Learning Platforms
+Education,Administration,Admissions,Managing admissions process,Admissions Management Systems
+Education,Administration,Student Records,Maintaining student records,Student Records Management Systems
+Education,Administration,Payroll Management,Processing payroll,Payroll Management Systems
+Education,Research,Research Project Management,Managing research projects,Research Management Systems
+Education,Student Services,Extracurricular Activities,Organizing extracurricular activities,Extracurricular Management Systems
+Education,Administration,Budgeting,Planning budgets,Budget Management Systems
+Education,Administration,Transport Management,Managing school transport,Transport Management Systems
+Education,Student Services,Health Services,Providing student health services,Health Management Systems
+Education,Teaching,Assessment,Conducting assessments,Assessment Management Systems

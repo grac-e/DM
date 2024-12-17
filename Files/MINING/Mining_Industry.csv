@@ -1,0 +1,251 @@
+﻿BusinessSector,BusinessFunction,MeasuringElt,Rating,SUbCategory,AsIsQuestions,ToBeQuestions,MAXIMUM RATING
+MINING,"Exploration and Geology, Mining Operations,Health  Safety  and Environment (HSE),Supply Chain and Logistics,Finance and Accounting,Corporate Development and Strategy",Data Utilization and Analytics,90,Data Collection,,,5
+MINING,"Exploration and Geology,Mining Operations,Health  Safety  and Environment (HSE),Supply Chain and Logistics,Finance and Accounting,Corporate Development and Strategy",Data Utilization and Analytics,90,Data Storage,,,5
+MINING,"Exploration and Geology,Mining Operations,Health  Safety  and Environment (HSE),Supply Chain and Logistics,Finance and Accounting,Corporate Development and Strategy",Data Utilization and Analytics,90,Data Management,,,5
+MINING,"Exploration and Geology,Mining Operations,Health  Safety  and Environment (HSE),Supply Chain and Logistics,Finance and Accounting,Corporate Development and Strategy",Data Utilization and Analytics,90,Data Analysis,,,5
+MINING,"Exploration and Geology,Mining Operations,Health  Safety  and Environment (HSE),Supply Chain and Logistics,Finance and Accounting,Corporate Development and Strategy",Data Utilization and Analytics,90,Use of ML,,,5
+MINING,Mining Operations,Automation and Robotics,80,Automation of the drilling production process,,,5
+MINING,Mining Operations,Automation and Robotics,80,"Utilization of advanced production technologies e.g., additive manufacturing",,,5
+MINING,Mining Operations,Automation and Robotics,80,Automation of the blasting production process,,,5
+MINING,Mining Operations,Automation and Robotics,80,Automation of the loading production process,,,5
+MINING,Mining Operations,Automation and Robotics,80,Use of digital device for seismicity measurement for geotechnical analysis,,,5
+MINING,Mining Operations,Automation and Robotics,80,Use of digital device and technology in ascertaining rock properties for geotechnical analysis,,,5
+MINING,Mining Operations,Automation and Robotics,80,Use of technology for the loading and hauling and hoisting fuel cost,,,5
+MINING,Mining Operations,Automation and Robotics,80,Stability risk analysis,,,5
+MINING,Mining Operations,Automation and Robotics,80,Continuous geotechnical monitoring,,,5
+MINING,Mining Operations,Automation and Robotics,80,Automating the type of mining method as per the rock quality,,,5
+MINING,Mining Operations,Automation and Robotics,80,Digital device in slope geometry,,,5
+MINING,Mining Operations,Automation and Robotics,80,Automation of the hauling production process,,,5
+MINING,Mining Operations,Automation and Robotics,80,Debottlenecking,,,5
+MINING,Mining Operations,Automation and Robotics,80,Value Chain Visualisation,,,5
+MINING,Mining Operations,Automation and Robotics,80,Pit to Port,,,5
+MINING,Mining Operations,Automation and Robotics,80,Automation of the hoisting production process,,,5
+MINING,Mining Operations,Internet of Things (IoT) Integration,70,Equipment performance,,,5
+MINING,Mining Operations,Internet of Things (IoT) Integration,70,Environmental conditions,,,5
+MINING,Mining Operations,Internet of Things (IoT) Integration,70,digital communication Utilization with stakeholders,,,5
+MINING,Mining Operations,Internet of Things (IoT) Integration,70,"Collect, update, and distribute project documents through digital platform",,,5
+MINING,Mining Operations,Internet of Things (IoT) Integration,70,"Computer-aided calculation, optimization, and simulation",,,5
+MINING,Mining Operations,Internet of Things (IoT) Integration,70,"Utilize IoT-solutions, advanced analytics, or artificial intelligence",,,5
+MINING,Mining Operations,Internet of Things (IoT) Integration,70,Digitally monitor problem issues and solving process,,,5
+MINING,Mining Operations,Internet of Things (IoT) Integration,70,Decision making,,,5
+MINING,Mining Operations,Internet of Things (IoT) Integration,70,Workflow optimization,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Predictive Maintenance,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Asset Optimization,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Power Plant Simulation,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Grid Simulation,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Building Energy Management,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Demand Response Optimization,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Wind and Solar Farm Modeling,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Energy Storage Optimization,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Fault Detection and Isolation,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Emissions Monitoring and Mitigation,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Disaster Response Planning,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE),Processing and Metallurgy,Supply Chain and Logistics",Digital Twin Technologies,60,Compliance Modeling,,,5
+MINING,"Supply Chain and Logistics,Health  Safety  and Environment (HSE),Corporate Development and Strategy,Human Resources (HR),Mining Operations",Advanced Communication and Connectivity,50,Wireless network,,,5
+MINING,"Supply Chain and Logistics,Health  Safety  and Environment (HSE),Corporate Development and Strategy,Human Resources (HR),Mining Operations",Advanced Communication and Connectivity,50,Satelite communication,,,5
+MINING,"Supply Chain and Logistics,Health  Safety  and Environment (HSE),Corporate Development and Strategy,Human Resources (HR),Mining Operations",Advanced Communication and Connectivity,50,Fibre optics,,,5
+MINING,"Supply Chain and Logistics,Health  Safety  and Environment (HSE),Corporate Development and Strategy,Human Resources (HR),Mining Operations",Advanced Communication and Connectivity,50,Sensitive data,,,5
+MINING,Legal and Compliance,Cybersecurity and Data Privacy,40,Infrastructure,,,5
+MINING,Legal and Compliance,Cybersecurity and Data Privacy,40,Operational systems,,,5
+MINING,Legal and Compliance,Cybersecurity and Data Privacy,40,Data privacy,,,5
+MINING,Legal and Compliance,Cybersecurity and Data Privacy,40,Intrusion Detection and Prevention,,,5
+MINING,Legal and Compliance,Cybersecurity and Data Privacy,40,Data Encryption and Secure Communication,,,5
+MINING,Legal and Compliance,Cybersecurity and Data Privacy,40,Access Control and Authentication,,,5
+MINING,Legal and Compliance,Cybersecurity and Data Privacy,40,Incident Response and Recovery,,,5
+MINING,Legal and Compliance,Cybersecurity and Data Privacy,40,Compliance with Regulatory Requirements,,,5
+MINING,Legal and Compliance,Cybersecurity and Data Privacy,40,Continuous Monitoring and Auditing,,,5
+MINING,Supply Chain and Logistics,Supply Chain Digitization,30,Procurement,,,5
+MINING,Supply Chain and Logistics,Supply Chain Digitization,30,Logistics,,,5
+MINING,Supply Chain and Logistics,Supply Chain Digitization,30,Inventory management,,,5
+MINING,Supply Chain and Logistics,Supply Chain Digitization,30,Real time tracking,,,5
+MINING,Human Resources (HR),Workforce Skills and Training,50,Training programs,,,5
+MINING,Human Resources (HR),Workforce Skills and Training,50,Knowledge transfer initiatives,,,5
+MINING,Human Resources (HR),Workforce Skills and Training,50,Workforce development strategies,,,5
+MINING,Human Resources (HR),Workforce Skills and Training,50,Digital literacy and skills,,,5
+MINING,"Health  Safety  and Environment (HSE),Community and Stakeholder Relations",Environmental and Sustainability Solutions,60,Environmental impact,,,5
+MINING,"Health  Safety  and Environment (HSE),Community and Stakeholder Relations",Environmental and Sustainability Solutions,60,Energy consumption,,,5
+MINING,"Health  Safety  and Environment (HSE),Community and Stakeholder Relations",Environmental and Sustainability Solutions,60,Sustainable mining practice,,,5
+MINING,"Health  Safety  and Environment (HSE),Community and Stakeholder Relations",Environmental and Sustainability Solutions,60,smart energy management,,,5
+MINING,"Health  Safety  and Environment (HSE),Community and Stakeholder Relations",Environmental and Sustainability Solutions,60,waste reduction,,,5
+MINING,"Health  Safety  and Environment (HSE),Community and Stakeholder Relations",Environmental and Sustainability Solutions,60,Rehabilitation,,,5
+MINING,"Health  Safety  and Environment (HSE),Community and Stakeholder Relations",Environmental and Sustainability Solutions,60,Digital authority involvement in environmental issues,,,5
+MINING,"Health  Safety  and Environment (HSE),Community and Stakeholder Relations",Environmental and Sustainability Solutions,60,"Digital plan, monitoring and tracking of environmental issues",,,5
+MINING,"Finance and Accounting,Corporate Development and Strategy",Strategic Vision and Leadership,65,Strategic vision,,,5
+MINING,"Finance and Accounting,Corporate Development and Strategy",Strategic Vision and Leadership,65,Leadership commitment,,,5
+MINING,"Finance and Accounting,Corporate Development and Strategy",Strategic Vision and Leadership,65,Organizational structure,,,5
+MINING,Health  Safety  and Environment (HSE),Remote Monitoring and Diagnostics,75,Enabling Real-Time Visibility,,,5
+MINING,Health  Safety  and Environment (HSE),Remote Monitoring and Diagnostics,75,Alarms,,,5
+MINING,Health  Safety  and Environment (HSE),Remote Monitoring and Diagnostics,75,Alerts,,,5
+MINING,Health  Safety  and Environment (HSE),Remote Monitoring and Diagnostics,75,Remote Troubleshooting Capabilities,,,5
+MINING,Mining Operations,Power Generation ,66,Transmission Infrastructure,,,5
+MINING,Mining Operations,Power Generation ,66,Distribution Networks,,,5
+MINING,Mining Operations,Power Generation ,66,Grid Stability and Reliability,,,5
+MINING,Mining Operations,Power Generation ,66,Renewable Integration,,,5
+MINING,Mining Operations,Power Generation ,66,Environmental Impact,,,5
+MINING,Mining Operations,Power Generation ,66,Generation Capacity,,,5
+MINING,Mining Operations,Power Generation ,66,Electricity Generation,,,5
+MINING,Mining Operations,generation technology,69,Heat Rate,,,5
+MINING,Mining Operations,generation technology,69,Forced Outage Rate,,,5
+MINING,Mining Operations,generation technology,69,Conversion Efficiency,,,5
+MINING,Mining Operations,generation technology,69,Emissions Intensity,,,5
+MINING,Mining Operations,generation technology,69,Fuel Cost,,,5
+MINING,Mining Operations,generation technology,69,Interconnection Capacity,,,5
+MINING,Mining Operations,generation technology,69,Nuclear Capacity Factor,,,5
+MINING,Mining Operations,generation technology,69,Electricity Generation,,,5
+MINING,Finance and Accounting,Digital Capability,68,IT Infrastructure,,,5
+MINING,Finance and Accounting,Digital Capability,68,Descriptive Analysis,,,5
+MINING, Finance and Accounting,Digital Capability,68,Predictive Analysis,,,5
+MINING,Human Resources (HR),Human Resources,88,Training on digital platforms,,,5
+MINING,Human Resources (HR),Human Resources,88,Monitor skills on digital platforms,,,5
+MINING,Human Resources (HR),Human Resources,88,Digitally monitor staff health status,,,5
+MINING,Human Resources (HR),Human Resources,88,Change Management,,,5
+MINING,Human Resources (HR),Human Resources,88,Reskilling,,,5
+MINING,Human Resources (HR),Human Resources,88,Stakeholder Engagement,,,5
+MINING,Human Resources (HR),Worker Enablement,87,Quick Decision,,,5
+MINING,Human Resources (HR),Worker Enablement,87,Making Employee,,,5
+MINING,Human Resources (HR),Worker Enablement,87,Enablement,,,5
+MINING,Human Resources (HR),Worker Enablement,87,Employee Effectiveness,,,5
+MINING,Human Resources (HR),Culture,85,Work Transformation,,,5
+MINING,Human Resources (HR),Culture,85,Changing Behaviour,,,5
+MINING,Human Resources (HR),Culture,85,Departmental Transformation,,,5
+MINING,Human Resources (HR),Culture,85,People Transformation,,,5
+MINING,"Marketing and sales,Corporate Development and Strategy",Customer Experience,77,Customer Satisfaction,,,5
+MINING,"Marketing and sales,Corporate Development and Strategy",Customer Experience,77,Mine to Customer,,,5
+MINING,"Corporate Development and Strategy, Supply Chain and Logistics",Unified Data ,63,Integrated Operations Centres,,,5
+MINING,"Corporate Development and Strategy, Supply Chain and Logistics",Unified Data ,63,Realtime data,,,5
+MINING,"Corporate Development and Strategy, Supply Chain and Logistics",Unified Data ,63,Integration,,,5
+MINING,"Corporate Development and Strategy, Supply Chain and Logistics",Unified Data ,63,Data-Driven Mine,,,5
+MINING,"Corporate Development and Strategy, Supply Chain and Logistics",Unified Data ,63,Eliminating Silos,,,5
+MINING,"Corporate Development and Strategy, Supply Chain and Logistics",Unified Data ,63,Single Platform,,,5
+MINING,Human Resources (HR),Performance Management,99,Value Chain Optimisation,,,5
+MINING,Human Resources (HR),Performance Management,99,Business Intelligence,,,5
+MINING,Human Resources (HR),Performance Management,99,Business Improvement,,,5
+MINING,Human Resources (HR),Performance Management,99,Shareholder Returns,,,5
+MINING,Human Resources (HR),Performance Management,99,Key Performance Indicators,,,5
+MINING,Community and Stakeholder Relations,Stakeholder Involvement,55,Labour,,,5
+MINING,Community and Stakeholder Relations,Stakeholder Involvement,55,Unions,,,5
+MINING,Community and Stakeholder Relations,Stakeholder Involvement,55,Employees,,,5
+MINING,"Mining Operations,Human Resources (HR)",Ease of Use and Adoption,53,Practicality of technologies,,,5
+MINING,"Mining Operations,Human Resources (HR)",Ease of Use and Adoption,53,Project Value Realisation,,,5
+MINING,"Mining Operations,Human Resources (HR)",Ease of Use and Adoption,53,Motivation (No Incentives),,,5
+MINING,Corporate Development and Strategy, Change Management,52,Ineffective change management,,,5
+MINING,Corporate Development and Strategy, Change Management,52,communication,,,5
+MINING,Corporate Development and Strategy, Change Management,52,Change Resistance,,,5
+MINING,Corporate Development and Strategy, Change Management,52,Reskilling,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE)",Worker Safety,50,Safety message announcement,,,5
+MINING,"Mining Operations,Health  Safety  and Environment (HSE)",Worker Safety,50,Monitoring of staff and visitor presence,,,5
+MINING,Legal and Compliance,Contract management,51,Digitally update and follow-up contracts towards clients,,,5
+MINING,Legal and Compliance,Contract management,51,Digitally track sub-contractor and supplier,,,5
+MINING,Legal and Compliance,Contract management,51,payment management,,,5
+MINING,Mining Operations,Quality control,54,Collect and monitor progress reports,,,5
+MINING,Mining Operations,Quality control,54,Quality inspections with mobile devices,,,5
+MINING,Mining Operations,Scheduling,57,"Create, assign, and prioritize tasks in real time and distribute to mobile devices",,,5
+MINING,Mining Operations,Scheduling,57,Plan and simulate site progress in 4D-software,,,5
+MINING,Mining Operations,Scheduling,57,Maintain a digital construction site disposition plan,,,5
+MINING,Mining Operations,Logistics,52,"Identify, track and locate material and equipment on-site with digital tools",,,5
+MINING,Mining Operations,Logistics,52,"Digitally monitor procurement orders, receipts, use, and quality issues",,,5
+MINING,Mining Operations,Logistics,52,Maintain digital bill of quantities,,,5
+MINING,Mining Operations,Design management,50,Visualize drawings and 3D models on-site on mobile platforms,,,5
+MINING,Mining Operations,Design management,50,"Update digital drawings, models and technical information with notes and asbuilt records",,,5
+MINING,Mining Operations,Ventiltion requirements,96,Dust control measures,,,5
+MINING,Mining Operations,Ventiltion requirements,96,control measures,,,5
+MINING,Mining Operations,Ventiltion requirements,96,Satbilization of haul road surfaces,,,5
+MINING,Mining Operations,Ventiltion requirements,96,Utilization of fog cannons for visible dust,,,5
+MINING,Mining Operations,Ventiltion requirements,96,Dust supression installation systems,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Comminution,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Ore characterization,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Process facilities,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Plant operation and mainatainance philosophy,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Expandability and expansion options,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Classification,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Gravity Separation,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Flotation,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Magnetic Separation,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Leaching,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Dewatering,,,5
+MINING,"Mining Operations,Processing and Metallurgy",Mineral processing,97,Smelting and Refining,,,5
+MINING,Mining Operations,Mine access,89,Blind splot,,,5
+MINING,Mining Operations,Mine access,89,Intersections,,,5
+MINING,Mining Operations,Mine access,89,Safety berms and ditches,,,5
+MINING,Mining Operations,Mine access,89,Equipment selection process,,,5
+MINING,Mining Operations,Mine access,89,Material handling,,,5
+MINING,Mining Operations,Mine access,89,haul road cross-sections,,,5
+MINING,Mining Operations,Mine access,89,drainage requirements,,,5
+MINING,Mining Operations,Mine access,89,road construction materials,,,5
+MINING,"Exploration and Geology,Marketing and sales",Market analysis,78,Product specification,,,5
+MINING,"Exploration and Geology,Marketing and sales",Market analysis,78,Demand and supply forecast,,,5
+MINING,"Exploration and Geology,Marketing and sales",Market analysis,78,Pricing strategy,,,5
+MINING,"Exploration and Geology,Marketing and sales",Market analysis,78,Competitors,,,5
+MINING,"Exploration and Geology,Marketing and sales",Market analysis,78,Revenue forecast,,,5
+MINING,"Exploration and Geology,Marketing and sales",Market analysis,78,Product shipping storage and distribution,,,5
+MINING,Mining Operations,Undeground and surface infrastructure,74,Utilities,,,5
+MINING,Mining Operations,Undeground and surface infrastructure,74,Change rooms,,,5
+MINING,Mining Operations,Undeground and surface infrastructure,74,Underground waiting areas,,,5
+MINING,Mining Operations,Undeground and surface infrastructure,74,Transport infrastructures,,,5
+MINING,Mining Operations,Undeground and surface infrastructure,74,Temporary infrastructures,,,5
+MINING,Mining Operations,Undeground and surface infrastructure,74,Communication,,,5
+MINING,Mining Operations,Undeground and surface infrastructure,74,Building and facilities ,,,5
+MINING,Maintainance ,Equipment Inspection,90,Application of lubricant,,,
+MINING,Maintainance ,Equipment Inspection,90,Scheduled inspection,,,
+MINING,Maintainance ,Calibration of Instruments,90,Gauge calibration,,,
+MINING,Maintainance ,Calibration of Instruments,90,Sensor calibration,,,
+MINING,Maintainance ,Calibration of Instruments,90,Monitoring instruments calibration,,,
+MINING,Maintainance ,Predictive Maintenance,90,Condition Monitoring,,,
+MINING,Maintainance ,Predictive Maintenance,90,Vibration analysis,,,
+MINING,Maintainance ,Predictive Maintenance,90,Thermography,,,
+MINING,Maintainance ,Predictive Maintenance,90,Oil analysis,,,
+MINING,Maintainance ,Predictive Maintenance,90,Data analysis,,,
+MINING,Maintainance ,Maintenance Scheduling,90,Planned mantainance,,,
+MINING,Maintainance ,Maintenance Scheduling,90,Scheduled maintainance ,,,
+MINING,Maintainance ,Corrective Maintenance,90,Breakdown Repairs,,,
+MINING,Maintainance ,Corrective Maintenance,90,Fault Diagnosis,,,
+MINING,Maintainance ,Corrective Maintenance,90,Component Replacement,,,
+MINING,Maintainance ,Corrective Maintenance,90,Recommissioning,,,
+MINING,Maintainance ,Asset Management,90,Inventory Management,,,
+MINING,Maintainance ,Asset Management,90,Asset Lifecycle Management,,,
+MINING,Maintainance ,Asset Management,90,Documentation and Reporting,,,
+MINING,Maintainance ,Safety and Compliance,90,Safety Inspections,,,
+MINING,Maintainance ,Safety and Compliance,90,Compliance Audits,,,
+MINING,Maintainance ,Safety and Compliance,90,Risk Assessments,,,
+MINING,Maintainance ,Shutdown and Turnaround Maintenance,90,Planning and Scheduling,,,
+MINING,Maintainance ,Shutdown and Turnaround Maintenance,90,Execution of Major Overhauls,,,
+MINING,Maintainance ,Shutdown and Turnaround Maintenance,90,Post-Maintenance Testing,,,
+MINING,Maintainance ,Technical Training and Skill Development,90,Training Programs,,,
+MINING,Maintainance ,Technical Training and Skill Development,90,Skill Development,,,
+MINING,Quality Control (QC),Sampling and Testing,90,Chemical analysis,,,
+MINING,Quality Control (QC),Sampling and Testing,90,Lab test,,,
+MINING,Quality Control (QC),Sampling and Testing,90,Physical property test,,,
+MINING,Quality Control (QC),Sampling and Testing,90,Raw material sampling,,,
+MINING,Quality Control (QC),Sampling and Testing,90,Intermediate product sampling,,,
+MINING,Quality Control (QC),Sampling and Testing,90,Final output product,,,
+MINING,Quality Control (QC),In-Process Inspections,90,Continuous monitoring,,,
+MINING,Quality Control (QC),In-Process Inspections,90,Real-time quality checks,,,
+MINING,Quality Control (QC),Defect Analysis,90,Identifying defects,,,
+MINING,Quality Control (QC),Defect Analysis,90,Analyzing defects,,,
+MINING,Quality Control (QC),Defect Analysis,90,Implementing corrective measures,,,
+MINING,Quality Control (QC),Quality Assurance (QA),90,Process Standardization,,,
+MINING,Quality Control (QC),Quality Assurance (QA),90,Compliance Audits,,,
+MINING,Quality Control (QC),Quality Assurance (QA),90,Supplier Quality Management,,,
+MINING,Quality Control (QC),Environmental Monitoring,90,Air and Water Quality Monitoring,,,
+MINING,Quality Control (QC),Environmental Monitoring,90,Waste Management,,,
+MINING,Quality Control (QC),Environmental Monitoring,90,Reclamation Quality Control,,,
+MINING,Quality Control (QC),Process Optimization,90,Continuous Improvement Programs,,,
+MINING,Quality Control (QC),Process Optimization,90,Process Control Systems,,,
+MINING,Quality Control (QC),Process Optimization,90,Quality Metrics and Reporting,,,
+MINING,Quality Control (QC),"Health, Safety, Environment, and Quality (HSEQ) Integration",90,HSEQ Audits,,,
+MINING,Quality Control (QC),"Health, Safety, Environment, and Quality (HSEQ) Integration",90,HSEQ Training,,,
+MINING,Quality Control (QC),"Health, Safety, Environment, and Quality (HSEQ) Integration",90,Incident Reporting and Analysis,,,
+MINING,Quality Control (QC),Customer Quality Assurance,90,Contract Compliance,,,
+MINING,Quality Control (QC),Customer Quality Assurance,90,Customer Feedback Management,,,
+MINING,Quality Control (QC),Customer Quality Assurance,90,Product Certification,,,
+MINING,Quality Control (QC),Quality Management Systems (QMS),90,Implementation of QMS,,,
+MINING,Quality Control (QC),Quality Management Systems (QMS),90,Documentation and Record Keeping,,,
+MINING,Quality Control (QC),Quality Management Systems (QMS),90,Management Reviews,,,
+MINING,Quality Control (QC),Training and Development,90,Quality Training Programs,,,
+MINING,Quality Control (QC),Training and Development,90,Skill Development,,,
+MINING,Quality Control (QC),Training and Development,90,Competency Assessments,,,
+MINING,Quality Control (QC),Risk Management,90,Risk Assessments,,,
+MINING,Quality Control (QC),Risk Management,90,Mitigation Planning,,,
+MINING,Quality Control (QC),Risk Management,90,Contingency Planning,,,
+MINING,Quality Control (QC),Product and Process Certification,90,ISO Certification,,,
+MINING,Quality Control (QC),Product and Process Certification,90,Product Grading and Certification,,,

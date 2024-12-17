@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM - Administrator</title>
+    <!-- Include necessary CSS libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Include Alpine.js library -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="/static/CSS/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="static/JS/code.js"></script>
+</head>
+
+<body x-data="AutomatedDigitalMaturity">
+    <div class="dashboard-container">
+        <div class="header-section-top">
+            <h1 class="page-title">
+              THE SECTOR SPECIFIC DIGITAL MATURITY FRAMEWORK
+            </h1>
+            <button class="sign-in-btn">SIGN IN</button>
+          </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="graduate-icon">
+                <img src="./images/id pict.jfif" alt="Avatar" style="border-radius: 50%; width: 70px;">
+            </div>
+            <br><br>
+            <ul>
+                <li x-on:click="openHome('Admin_Home_Page')">HOME</li>
+                <li x-on:click="openHome('manage_business_sector')">Manage Business sector</li>
+                <li x-on:click="openHome('manage_user_account')">Manage User Account</li>
+                <li x-on:click="openHome('manage_csv_file_upload')">Manage Upload CSV</li>
+            </ul>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Welcome Box -->
+            <div class="welcome-box">
+                <br>Welcome, Natasia Mahure
+                <br>
+                <div class="date">September 15, 2024</div>
+            </div>
+
+            <!-- Admin Home Page -->
+            <div class="table-responsive" x-show="Admin_Home_Page" x-cloak>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black;">ID</th>
+                            <th style="border: 1px solid black;">BUSINESS SECTOR</th>
+                            <th style="border: 1px solid black;">RATING NAME</th>
+                            <th style="border: 1px solid black;">DESCRIPTION</th>
+                            <th style="border: 1px solid black;">VALUE</th>
+                            
+                            <th>DELETE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in combined_ratings %}
+                        <tr >
+                            <td style="border: 1px solid black;">{{ row[0] }}</td>
+                            <td style="border: 1px solid black;">{{ row[1] }}</td>
+                            <td style="border: 1px solid black;">{{ row[2] }}</td>
+                            <td style="border: 1px solid black;">{{ row[3] }}</td>
+                            <td style="border: 1px solid black;">{{ row[4] }}</td>
+                            <td style="border: 1px solid black;">
+                                <form action="/delete_answer_rating" method="post">
+                                    <input type="hidden" name="record_id" value="{{ row[0] }}">
+                                    <button type="submit" class="submit-btn">Delete</button>
+                                </form>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+
+
+            </div>
+
+
+            <!-- Manage Business Sector Section -->
+            <div class="main-box" x-show="manage_business_sector" x-cloak>
+                <div class="sub-box">Add new business sector
+                    <div class="graduate-icon">
+
+                        <button class="submit-btn"
+                            x-on:click="openHome('computational_interface_new_business_sector')">ADD</button>
+                        <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                    </div>
+                    <div class="tooltip-text">Manually adding a business sector</div>
+                </div>
+
+
+                <div class="sub-box">Update business sector
+                    <div class="graduate-icon">
+                        <button class="submit-btn"
+                            x-on:click="openHome('computational_interface_update_business_sector')">UPDATE</button>
+                        <!-- <img src="./images/19.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                    </div>
+                    <div class="tooltip-text">Manually updating a business sector</div>
+                </div>
+
+                <div class="sub-box">Answer ratings
+                    <div class="graduate-icon">
+                        <button class="submit-btn"
+                            x-on:click="openHome('assign_answer_rating_for_business_functions')">RATE</button>
+                        <!-- <img src="./images/17.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                    </div>
+                    <div class="tooltip-text">Manually adding an answer rating for a business sector</div>
+                </div>
+
+                <div class="sub-box">Update answer ratings
+                    <div class="graduate-icon">
+                        <button class="submit-btn" x-on:click="openHome('update_old_answer_rating')">UPDATE</button>
+                        <!-- <img src="./images/15.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                    </div>
+                    <div class="tooltip-text">Manually updating an answer rating for a business sector</div>
+                </div>
+
+
+
+
+                <div class="sub-box">View answer ratings
+                    <div class="graduate-icon">
+                        <button class="submit-btn">VIEW</button>
+                        <!-- <img src="./images/16.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                    </div>
+                    <div class="tooltip-text">View all answer ratings</div>
+                </div>
+            </div>
+
+
+
+            <!-- Manage User Account Section -->
+            <div class="main-box" x-show="manage_user_account" x-cloak>
+                <div class="sub-box">Add new user
+                    <div class="graduate-icon">
+                        <button class="submit-btn" x-on:click="openHome('add_new_user')">ADD USER</button>
+                        <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                    </div>
+                    <div class="tooltip-text">Manually adding a new user account</div>
+                </div>
+
+
+
+                <div class="sub-box">View all user accounts
+                    <div class="graduate-icon">
+                        <button class="submit-btn">VIEW</button>
+                        <!-- <img src="./images/19.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                    </div>
+                    <div class="tooltip-text">View all user accounts</div>
+                </div>
+
+
+                <div class="sub-box">CHANGE PASSWORD
+                    <div class="graduate-icon">
+                        <button class="submit-btn" x-on:click="openHome('change_password')">Change</button>
+                        <!-- <img src="./images/17.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                    </div>
+                    <div class="tooltip-text">Change the password of a user account</div>
+                </div>
+            </div>
+
+
+
+            <!-- Manage CSV File Upload Section -->
+            <div class="main-box" x-show="manage_csv_file_upload" x-cloak>
+                <!-- <h1>UPLOAD CSV FILE INTO A DATABASE</h1> -->
+                <!-- Digital maturity database  -->
+
+                <div class="sub-box">Digital Maturity<br>
+                    <div class="graduate-icon">
+                        <form action="/upload_csv" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" accept=".csv">
+                            <button type="submit" class="submit-btn-admin">Upload</button>
+                            <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                        </form>
+                    </div>
+
+                </div>
+
+
+
+                <!-- Value chain database  -->
+                <div class="sub-box">Value Chain<br>
+                    <div class="graduate-icon">
+                        <form action="/value_chain_upload_csv" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" accept=".csv">
+                            <button type="submit" class="submit-btn-admin">Upload</button>
+                            <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                        </form>
+                    </div>
+                </div>
+
+
+
+                <!-- Answer rating database  -->
+                <div class="sub-box">Answer rating<br>
+                    <div class="graduate-icon">
+                        <form action="/answer_rating_upload_csv" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" accept=".csv">
+                            <button type="submit" class="submit-btn-admin">Upload</button>
+                            <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Adding a new business sector  -->
+            <div x-show="computational_interface_new_business_sector">
+                <h1>ADDING NEW BUSINESS SECTOR</h1>
+
+                <form action="#" method="POST">
+
+                    <div class="form-group-alpine">
+                        <label>Business Sector Name</label>
+                        <input name="business_sector_name" placeholder="Enter the name of the business sector"
+                            required />
+
+                    </div>
+                    <br>
+                    <div class="form-group-alpine">
+                        <label>Business Function</label>
+                        <input name="business_function" type="text"
+                            placeholder="Enter the name of the business function" required>
+
+                    </div>
+
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>Business Process</label>
+                        <input name="Measuring_Element" class="input" type="text"
+                            placeholder="Enter the name of the business process" required>
+
+                    </div>
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>Business Process rating</label>
+                        <input name="Rating" class="input" type="number"
+                            placeholder="Provide a rating of the business process">
+
+                    </div>
+                    <br>
+                    <div class="form-group-alpine">
+                        <label>Business Process activity</label>
+                        <input name="subCategory_name" class="input" type="text"
+                            placeholder="Provide business process activities">
+
+                    </div>
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>Maximum Rating</label>
+                        <input name="MaxRating" class="input" type="number" placeholder="Provide a maximum rating">
+
+                    </div>
+                    <div>
+                        <button type="submit" class="submit-btn-admin">UPDATE CREDENTIALS</button>
+
+                    </div>
+                </form>
+
+            </div>
+
+
+
+            <!-- Update business sector  -->
+            <div x-show="computational_interface_update_business_sector">
+                <h1>ADDING NEW BUSINESS SECTOR</h1>
+
+                <form action="/UpdateCombinedTiersForAll" method="POST">
+
+                    <div class="form-group-alpine">
+                        <label>Old Business Sector Name</label>
+                        <input name="oldbusiness_sector_name" placeholder="Enter the name of the old business sector"
+                            required />
+
+                    </div>
+                    <br>
+                    <div class="form-group-alpine">
+                        <label>old Business Function</label>
+                        <input name="oldbusiness_function" type="text"
+                            placeholder="Enter the name of the old business function" required>
+
+                    </div>
+
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>Old Business Process</label>
+                        <input name="oldMeasuring_Element" type="text"
+                            placeholder="Enter the name of the old business process" required>
+
+                    </div>
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>Old Business Process rating</label>
+                        <input name="oldRating" class="input" type="number"
+                            placeholder="Provide a rating of the old business process">
+
+                    </div>
+                    <br>
+                    <div class="form-group-alpine">
+                        <label>Business Process activity</label>
+                        <input name="oldsubCategory_name" class="input" type="text"
+                            placeholder="Provide old business process activities">
+
+                    </div>
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>Maximum Rating</label>
+                        <input name="oldMaxRating" class="input" type="number" placeholder="Provide old maximum rating">
+                    </div>
+
+
+                    <br>
+
+                    <!-- new  -->
+
+                    <div class="form-group-alpine">
+                        <label>New Business Sector Name</label>
+                        <input name="newbusiness_sector_name" placeholder="Enter the name of the new business sector"
+                            required />
+
+                    </div>
+                    <br>
+                    <div class="form-group-alpine">
+                        <label>New Business Function</label>
+                        <input name="newbusiness_function" type="text"
+                            placeholder="Enter the name of the New business function" required>
+
+                    </div>
+
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>New Business Process</label>
+                        <input name="newMeasuring_Element" type="text"
+                            placeholder="Enter the name of the New business process" required>
+
+                    </div>
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>New Business Process rating</label>
+                        <input name="newRating" type="number"
+                            placeholder="Provide a rating of the New business process">
+
+                    </div>
+                    <br>
+                    <div class="form-group-alpine">
+                        <label>New Business Process activity</label>
+                        <input name="newsubCategory_name" type="text"
+                            placeholder="Provide New business process activities">
+
+                    </div>
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>New Maximum Rating</label>
+                        <input name="newMaxRating" type="number" placeholder="Provide New maximum rating">
+                    </div>
+
+                    <div>
+                        <button type="submit" class="submit-btn-admin">UPDATE ENTRIES</button>
+
+                    </div>
+                </form>
+
+            </div>
+
+
+            <!-- Answer rating  -->
+
+            <div x-show="assign_answer_rating_for_business_functions">
+                <h1>ADDING NEW ANSWER RATINGS</h1>
+
+                <form action="/ratingAnswersBusinessFunctions" method="POST">
+
+                    <div class="form-group-alpine">
+                        <label>Business Sector Name</label>
+                        <input name="rating_business_sector_name" placeholder="Enter the name of the business sector"
+                            required />
+
+                    </div>
+                    <br>
+                    <div class="form-group-alpine">
+                        <label>RATING NAME</label>
+                        <input name="rating_name_business_sector" type="text"
+                            placeholder="Enter rating name e.g Basic, Proactive, Resilent etc" required>
+
+                    </div>
+
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>DESCRIPTION</label>
+                        <textarea class="textarea-large" name="rating_description_business_sector" required>
+
+                            </textarea>
+
+                    </div>
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>RATING VALUE</label>
+                        <input name="rating_value_business_sector" type="number"
+                            placeholder="Provide a rating of the answer rating">
+
+                    </div>
+                    <br>
+
+                    <div>
+                        <button type="submit" class="submit-btn-admin">RATE SECTOR</button>
+
+                    </div>
+                </form>
+
+            </div>
+
+
+            <!-- Update answer rating  -->
+            <div x-show="update_old_answer_rating">
+                <h1>UPDATE OLD ANSWER RATINGS</h1>
+
+                <form action="/updateratingAnswersBusinessFunctions" method="POST">
+
+                    <div class="form-group-alpine">
+                        <label>Business Sector Name</label>
+                        <input name="rating_business_sector_name" placeholder="Enter the name of the business sector"
+                            required />
+
+                    </div>
+                    <br>
+                    <div class="form-group-alpine">
+                        <label>RATING NAME</label>
+                        <input name="rating_name_business_sector" type="text"
+                            placeholder="Enter rating name e.g Basic, Proactive, Resilent etc" required>
+
+                    </div>
+
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>DESCRIPTION</label>
+                        <textarea class="textarea-large" name="newrating_description_business_sector" required>
+
+                    </textarea>
+
+                    </div>
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>RATING VALUE</label>
+                        <input name="newrating_value_business_sector" type="number"
+                            placeholder="Provide a rating of the answer rating">
+
+                    </div>
+                    <br>
+
+                    <div>
+                        <button type="submit" class="submit-btn-admin">UPDATE SECTOR RATING</button>
+
+                    </div>
+                </form>
+
+            </div>
+
+            <!-- Manage user account  -->
+
+            <!-- Add new user account  -->
+            <div x-show="add_new_user" x-cloak>
+                <h1>ADDING NEW USERS</h1>
+
+                <form action="/register" method="POST" enctype="multipart/form-data">
+
+                    <div class="form-group-alpine">
+                        <label>Enter your username</label>
+                        <input type="text" placeholder="Your Username" name="name" required>
+
+                    </div>
+                    <br>
+                    <div class="form-group-alpine">
+                        <label>Email</label>
+                        <input type="text" placeholder="Your Email" name="email" required>
+
+                    </div>
+
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>Select accoun type</label>
+                        <select name="users" id="cars" class="input_password" required>
+                            <option value="disabled">Select a user type</option>
+                            <option value="Business Analyst">Business Analyst</option>
+                            <option value="Business Manager">Manager</option>
+                            <option value="Administrator">Administrator</option>
+                        </select>
+
+                    </div>
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>Enter a password</label>
+                        <input type="password" placeholder="New Password" name="password" required>
+
+                    </div>
+                    <br>
+
+
+                    <div class="form-group-alpine">
+                        <label>Confirm password</label>
+                        <input type="password" placeholder="Confirm new Password" name="confirm_password" required>
+
+                    </div>
+                    <br>
+
+                    <div class="form-group-alpine">
+                        <label>Select business sector</label>
+                        <select name="business_sector" id="business-sector-select" required>
+                            <option value="">Select your business sector</option>
+                            {% for sector in business_sectors %}
+                            <option value="{{ sector[0] }}">{{ sector[0] }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                    <br>
+
+
+                    <div class="form-group-alpine">
+                        <label>Profile Picture</label>
+                        <input type="file" name="User_photo" class="upload-btn" name="password" accept="image/*"
+                            id="User_photo">
+
+                    </div>
+                    <br>
+
+
+
+                    <div>
+                        <button type="submit" class="submit-btn-admin">ADD USER</button>
+
+                    </div>
+                </form>
+
+            </div>
+
+            <!-- Change password  -->
+            <div x-show="change_password" x-cloak>
+                <h1>CHANGE PASSWORD OF A USER</h1>
+
+                <form method="POST" action="/change_password">
+
+
+                    <div class="form-group-alpine">
+                        <label>Email</label>
+                        <input type="email" placeholder="Your Email" name="email" required>
+
+                    </div>
+
+                    <br>
+
+
+
+                    <div class="form-group-alpine">
+                        <label>Enter a password</label>
+                        <input type="password" placeholder="New Password" name="newpassword" required>
+
+                    </div>
+                    <br>
+
+
+                    <div class="form-group-alpine">
+                        <label>Confirm password</label>
+                        <input type="password" placeholder="Confirm new Password" name="confnewpassword" required>
+
+                    </div>
+                    <br>
+
+
+                    <div>
+                        <button type="submit" class="submit-btn-admin">Update password</button>
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>About Us</h5>
+                    <p>We provide with a dynamic digital maturity assessment for all your business functions and their
+                        classifed processes and activities with just one click.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: 4IRdevelopmentteam@uj.ac.za</li>
+                        <li>Phone: +123 456 7890</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2024 DIGITAL MATURITY-VALUE CHAIN-BUSINESS PROCESS. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userTypeSelect = document.getElementById('users');
+            const businessSectorDiv = document.getElementById('business-sector');
+
+            userTypeSelect.addEventListener('change', function () {
+                const selectedValue = this.value;
+
+                if (selectedValue === 'Business Analyst' || selectedValue === 'Business Manager') {
+                    businessSectorDiv.classList.remove('hidden');
+                    businessSectorDiv.querySelector('select').setAttribute('required', 'required');
+                } else {
+                    businessSectorDiv.classList.add('hidden');
+                    businessSectorDiv.querySelector('select').removeAttribute('required');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

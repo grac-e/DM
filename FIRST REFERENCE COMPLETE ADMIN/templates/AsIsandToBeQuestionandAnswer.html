@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DM - Administrator</title>
+    <!-- Include necessary CSS libraries -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Include Alpine.js library -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link rel="stylesheet" href="/static/CSS/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="/static/JS/code.js"></script>
+  </head>
+
+<body x-data="AutomatedDigitalMaturity">
+    <div class="dashboard-container">
+        <div class="header-section-top">
+            <h1 class="page-title">
+              THE SECTOR SPECIFIC DIGITAL MATURITY FRAMEWORK
+            </h1>
+            <form action="/logout">
+              <button class="sign-in-btn" type="submit">LOG OUT</button>
+            </form>
+          </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="graduate-icon">
+                <img src="./images/id pict.jfif" alt="Avatar" style="border-radius: 50%; width: 70px;">
+            </div>
+            <br><br>
+            <ul>
+                <li x-on:click="openHome('business_analysts_home_page')">
+                    <a href="{{ url_for('dashboardBusinessAnalysts') }}" class="no-underline">HOME</a>
+                  </li>
+                <li x-on:click="openHome('business_analysts_business_process_page')">Map Business Process</li>
+                <!-- <li x-on:click="openHome('manage_user_account')">Manage User Account</li> -->
+                <!-- <li x-on:click="openHome('manage_csv_file_upload')">Manage Upload CSV</li> -->
+            </ul>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Welcome Box -->
+            <div class="welcome-box">
+                <br />Welcome, {{user_name}}
+                <br />
+                <div class="date">
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                      <div class="flashes">
+                        {% for category, message in messages %}
+                          <div class="alert alert-{{ category }}" role="alert">
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  {% endwith %}
+                </div>
+              </div>
+              
+
+            <!-- Admin Home Page -->
+           <div x-show="business_analysts_home_page">
+            <form action="/userSubmissionDataIntoTable" method="POST">
+                <h1>DIGITAL MATURITY ASSESSMENT FOR BUSINESS FUNCTIONS </h1>
+
+
+                <div class="table-responsive">
+                    <table>
+                        <tbody>
+                            <tr>
+                                {% for rating in business_sector_rating %}
+                                <td>{{ rating[0] }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                {% for rating in business_sector_rating %}
+                                <td>{{ rating[1] }}</td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <br><br>
+                <div class="form-group-alpine">
+                    <label>Enter the unique code</label>
+                    <input name="Unique_code_from_User" type="text"
+                        placeholder="Enter the unique code provided by the business manager" required>
+
+                </div>
+
+
+                <br><br>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>BUSINESS PROCESS</th>
+                                <th>BUSINESS ACTIVITIES</th>
+
+                                <td>AS-IS QUESTION</td>
+                                <th>AS-IS ANSWER</th>
+                                <td>TO-BE QUESTION</td>
+                                <th>TO-BE ANSWER</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for measuring_elt, sub_category in
+                            session['measuring_elt_subcategory'].items() %}
+                            <tr>
+                                <td>{{ measuring_elt }}</td>
+                                <input type="hidden" name="Measuring_element_user[]" value="{{ measuring_elt }}" />
+
+                                <td>
+                                    <select name="sub_category_for_user_{{ measuring_elt }}[]" required>
+                                        {% for data in business_function_selected_data if
+                                        data[0] == measuring_elt %}
+                                        <option value="{{ data[2] }}" disabled selected>
+                                            {{ data[2] }}
+                                        </option>
+
+                                        {% endfor %}
+                                    </select>
+                                    {% for data in business_function_selected_data if data[0]
+                                    == measuring_elt %}
+                                    <input type="hidden" name="sub_category_for_user_{{ measuring_elt }}[]"
+                                        value="{{ data[2] }}" />
+
+                                    {% endfor %}
+                                </td>
+
+                                <td>
+                                    {{
+                                    session['as_is_to_be_questions'][measuring_elt]['as_is_question']
+                                    }}
+                                </td>
+                                <td>
+                                    <select name="UserAnswerRatingAsIs[]" required>
+                                        <option value="" disabled selected>
+                                            Select answer "As-Is"
+                                        </option>
+                                        {% for rating in business_sector_rating %}
+                                        <option value="{{ rating[2] }}">
+                                            {{ rating[0] }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td>
+                                    {{
+                                    session['as_is_to_be_questions'][measuring_elt]['to_be_question']
+                                    }}
+                                </td>
+                                <td>
+                                    <select name="UserAnswerRatingToBe[]" required>
+                                        <option value="" disabled selected>
+                                            Select answer "To-Be"
+                                        </option>
+                                        {% for rating in business_sector_rating %}
+                                        <option value="{{ rating[2] }}">
+                                            {{ rating[0] }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+
+                <button class="submit-btn-admin">SUBMIT ANSWERS</button>
+            </form>
+
+           </div>
+
+
+           <div x-show="business_analysts_business_process_page">
+            <h1>MAP YOUR BUSINESS FUNCTION</h1>
+
+            <form action="/mapping_the_business_processes" method="post">
+
+
+                <div class="form-group-alpine">
+                    <label>Business Function</label>
+                    <select class="input" name="business_function_user" required>
+                        <option value="" disabled selected>Select a business function</option>
+                        {% for function in unique_business_pricess_function %}
+                        <option value="{{ function}}">{{ function}}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <br>
+
+                <div>
+                    <button type="submit" class="submit-btn-admin">MAP BUSINESS FUNCTION</button>
+
+                </div>
+            </form>
+
+        </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>About Us</h5>
+                    <p>We provide with a dynamic digital maturity assessment for all your business functions and their
+                        classifed processes and activities with just one click.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: 4IRdevelopmentteam@uj.ac.za</li>
+                        <li>Phone: +123 456 7890</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2024 DIGITAL MATURITY-VALUE CHAIN-BUSINESS PROCESS. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userTypeSelect = document.getElementById('users');
+            const businessSectorDiv = document.getElementById('business-sector');
+
+            userTypeSelect.addEventListener('change', function () {
+                const selectedValue = this.value;
+
+                if (selectedValue === 'Business Analyst' || selectedValue === 'Business Manager') {
+                    businessSectorDiv.classList.remove('hidden');
+                    businessSectorDiv.querySelector('select').setAttribute('required', 'required');
+                } else {
+                    businessSectorDiv.classList.add('hidden');
+                    businessSectorDiv.querySelector('select').removeAttribute('required');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

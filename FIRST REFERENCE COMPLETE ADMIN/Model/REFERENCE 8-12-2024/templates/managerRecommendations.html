@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM | Manager</title>
+    <link href="/static/css/admin/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="/static/js/code.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="/static/css/admin/style.css" rel="stylesheet">
+</head>
+
+<body x-data="AutomatedDigitalMaturity" x-cloak>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">Logo</div>
+            <div class="menu">
+                <a href="#" class="menu-item active" x-on:click="openHome('Admin_Home_Page')"><i
+                        class="fas fa-home"></i></a>
+                <a href="#" class="menu-item" x-on:click="openHome('manage_business_sector')">Generate Code</a>
+                <a href="#" class="menu-item" x-on:click="openHome('manage_user_account')">View Generated Code</a>
+                <a href="#" class="menu-item" x-on:click="openHome('manage_user_account')">Business Process</a>
+                <a href="#" class="menu-item" x-on:click="openHome('manage_user_account')">Value Chain</a>
+
+
+            </div>
+        </div>
+        <div class="main-content">
+
+            <div class="cards">
+                <div class="card">
+                    <a href="#"><i class="fas fa-file-alt"></i></a>
+                </div>
+                <div class="card">
+                    <i x-on:click="openHome('get_maturity_feedback')" class="feedback-btn">GET FEEDBACK</i>
+                </div>
+
+                <div class="card">
+                    <form action="/logout">
+                        <button type="submit"><a href="#"><i class="fas fa-lock"></i></a></button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Displaying surveys  -->
+            <div x-show="Admin_Home_Page" x-cloak>
+
+                <div class="main-content">
+                    <div class="cards">
+
+                        <section>
+                            <div class="">
+                                <h3 style="color: white;">Digital Maturity Data</h3>
+                                <!-- Form for each row -->
+                                <table style="background-color: black;">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>Skills</th>
+                                            <th>Technology</th>
+  
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for record in recommendations %}
+                                        <tr>
+                                            <td>{{ record[1] }}</td>
+                                            <td>{{ record[0] }}</td>
+                                            
+                                           
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        
+                        
+
+                        
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div x-show="get_maturity_feedback">
+                <form action="/submit_unique_code" method="POST">
+
+                    <div style="display: flex;">
+                        <label>
+                            <h3>RE-ENTER UNIQUE CODE PROVIDED TO YOU:&nbsp; &nbsp; &nbsp;</h3>
+                        </label>
+                        <input name="unique_code_user" class="input" style="height: auto; width: 500px;" type="text"
+                            placeholder="Re-enter the unique generated code." required>
+
+
+                    </div>
+                    <button type="submit" class="submit-btn">SUBMIT CODE</button>
+
+
+
+                </form><br><br>
+                <div class="table-container">
+                    <div>
+                        <button class="submit-btn"
+                            @click="first_result = !first_result; digital_maturity_classification = false"
+                            style="float: left;">
+                            VIEW RESULT
+                        </button>
+                    </div>
+                    <div>
+                        <button class="submit-btn"
+                            @click="digital_maturity_classification = !digital_maturity_classification; first_result = false"
+                            style="float: right;">
+                            MATURITY CLASSIFICATION
+                        </button>
+                    </div>
+
+
+                    <div x-show="first_result">
+
+                        <h1>DIGITAL MATRITY LEVELS</h1>
+                        <section>
+                            <div class="">
+                                {% for bf, data in business_data.items() %}
+                                <h3 style="color: white;">{{ bf }}</h3>
+                                <table style="background-color: black;">
+                                    <thead>
+                                        <tr>
+                                            <th>Measuring Element</th>
+                                            <th>Percentage As Is</th>
+                                            <th>Percentage To Be</th>
+                                            <th>Feedback As Is</th>
+                                            <th>Feedback To Be</th>
+                                            <th>Growth Rate</th>
+                                            <th>Duration</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for measuring_elt_user, exped_sum, as_is_sum, to_be_sum,
+                                        percent_maturity_as_is,
+                                        percent_maturity_to_be, feedback_as_is, feedback_to_be, growth_rate,
+                                        time_to_grow in
+                                        data %}
+                                        <tr>
+                                            <td>{{ measuring_elt_user }}</td>
+                                            <td>{{ percent_maturity_as_is }}%</td>
+                                            <td>{{ percent_maturity_to_be }}%</td>
+                                            <td>{{ feedback_as_is }}</td>
+                                            <td>{{ feedback_to_be }}</td>
+                                            <td>{{ growth_rate }}</td>
+                                            <td>{{ time_to_grow }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% endfor %}
+                            </div>
+                        </section><br><br>
+
+                        <!-- Section for the bar plots  -->
+
+                        <section>
+                            <div class="">
+
+                                <h2>Bar Plots</h2>
+                                {% for bar_plot_image in bar_plot_images %}
+
+                                <img src="data:image/png;base64,{{ bar_plot_image }}" alt="Bar Plot" class="img-large">
+
+                                {% endfor %}
+
+                            </div>
+                        </section><br><br>
+
+
+                        <section>
+                            <!-- This section displays the plots -->
+                            <div>
+
+                                <h2>Diamond Analysis</h2>
+                                {% for image in plot_images %}
+                                <img src="data:image/png;base64,{{ image }}" alt="Business Function Plot"
+                                    class="img-large">
+                                {% endfor %}
+
+                            </div>
+                        </section><br><br>
+
+                        <section>
+                            <div class="">
+
+
+                                <h2>Growth Rate Curves</h2>
+                                {% for growth_rate_image in growth_rate_images %}
+
+                                <img src="data:image/png;base64,{{ growth_rate_image }}" alt="Growth Rate Curve"
+                                    class="img-large">
+
+                                {% endfor %}
+
+
+                            </div>
+                        </section>
+                    </div>
+
+                    <div x-show="digital_maturity_classification">
+
+                        <h1>DIGITAL MATURITY CLASSIFICATION</h1>
+                        <section>
+                            <div class="">
+                                <h3 style="color: white;">Digital Maturity Data</h3>
+                                <!-- Form for each row -->
+                                <table style="background-color: black;">
+                                    <thead>
+                                        <tr>
+                                            <th>Business Function</th>
+                                            <th>Digital Maturity Type</th>
+                                            <th>Maturity As-Is</th>
+                                            <th>Maturity To-Be</th>
+                                            <th>Value Chain Recommendation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for record in maturity_data %}
+                                        <tr>
+                                            <td>{{ record[1] }}</td>
+                                            <td>{{ record[0] }}</td>
+                                            <td>{{ record[2] }}</td>
+                                            <td>{{ record[3] }}</td>
+                                            <td>
+                                                <form action="/recommendations_from_value_chain" method="POST">
+                                                    <input type="hidden" name="business_function_recomm" value="{{ record[1] }}">
+                                                    <button type="submit">GET VC RECOMMENDATION</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        
+                        
+                        
+                        <br><br>
+
+                        <!-- Section for the pie charts -->
+                        <section>
+                            <div class="">
+                                <h2>Pie Chart - Maturity As-Is</h2>
+                                {% if pie_chart_as_is %}
+                                <img src="data:image/png;base64,{{ pie_chart_as_is }}" alt="Pie Chart As-Is"
+                                    class="img-large">
+                                {% endif %}
+                            </div>
+                            <div class="">
+                                <h2>Pie Chart - Maturity To-Be</h2>
+                                {% if pie_chart_to_be %}
+                                <img src="data:image/png;base64,{{ pie_chart_to_be }}" alt="Pie Chart To-Be"
+                                    class="img-large">
+                                {% endif %}
+                            </div>
+                        </section>
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+            <div x-show="manage_business_sector" x-cloak>
+
+                <div class="main-content">
+                    <div class="cards">
+                        <div class="card">
+
+
+
+                        </div>
+                        <div class="card">
+                            <h2>GENERATING CODE</h2>
+                            <p>Enter any word to generate a unique character code which should be kept private at all
+                                times.
+                            </p>
+
+
+                            <form action="/add_random_characters" method="post">
+                                <div class="form-group">
+                                    <label>
+                                        <h3>Word</h3>
+                                    </label>
+                                    <input name="word" class="input" type="text" placeholder="Enter any word" required>
+                                </div>
+                                <button class="btn">CLICK TO GENERATE CODE</button>
+                            </form>
+
+                        </div>
+
+                        <div class="card">
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div x-show="manage_user_account" x-cloak>
+
+                <div class="main-content">
+                    <div class="cards">
+                        <div class="card">
+                            {% if modified_word %}
+
+                            <div class="card">
+                                <h2>Generated Code</h2>
+                                <p>{{ modified_word }}</p>
+                            </div>
+
+                            {% endif %}
+
+
+                        </div>
+                        <div class="card">
+
+
+                        </div>
+
+                        <div class="card">
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</body>
+
+</html>

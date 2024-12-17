@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DM - Business Manager</title>
+    <!-- Include necessary CSS libraries -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Include Alpine.js library -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link rel="stylesheet" href="/static/CSS/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="/static/JS/code.js"></script>
+  </head>
+
+  <body x-data="AutomatedDigitalMaturity">
+    <div class="dashboard-container">
+      <div class="header-section-top">
+        <h1 class="page-title">
+          THE SECTOR SPECIFIC DIGITAL MATURITY FRAMEWORK
+        </h1>
+        <form action="/logout">
+          <button class="sign-in-btn" type="submit">LOG OUT</button>
+        </form>
+      </div>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="graduate-icon">
+          <img
+            src="./images/id pict.jfif"
+            alt="Avatar"
+            style="border-radius: 50%; width: 70px"
+          />
+        </div>
+        <br /><br />
+        <ul>
+          <li x-on:click="openHome('Admin_Home_Page')">HOME</li>
+          <li x-on:click="openHome('manage_business_sector')">Generate Code</li>
+          <li x-on:click="openHome('manage_user_account')">
+            View Generated Code
+          </li>
+          <li x-on:click="openHome('manage_user_account')">
+            Business Process Maping
+          </li>
+          <li x-on:click="openHome('manage_user_account')">Value Chain</li>
+        </ul>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Welcome Box -->
+        <div class="welcome-box">
+          <br />Welcome, {{user_name}}
+          <br />
+          <div class="date">
+            {% with messages = get_flashed_messages(with_categories=true) %} {%
+            if messages %}
+            <ul class="flashes">
+              {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %} {% endwith %}
+          </div>
+        </div>
+
+        <!-- Admin Home Page -->
+        <div x-show="business_manager_home_page">
+          <h1>VALUE CHAIN RECOMMENDATIONS</h1>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <td>Business Process</td>
+                  <td>Activities</td>
+                  <th>Skills</th>
+                  <th>Technology</th>
+                </tr>
+              </thead>
+              <tbody>
+               {% for record in recommendations %}
+                <tr>
+                  <td></td>
+                  <td>
+                    
+                      {% for skill in record[2].split(', ') %}
+                        <p>{{ skill }}</p>
+                      {% endfor %}
+                    
+                  </td>
+                  <td>
+                   
+                      {% for tech in record[3].split(', ') %}
+                        <p>{{ tech }}</p>
+                      {% endfor %}
+                   
+                  </td>
+                </tr>
+               {% endfor %}
+              </tbody>
+            </table>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>About Us</h5>
+            <p>
+              We provide with a dynamic digital maturity assessment for all your
+              business functions and their classifed processes and activities
+              with just one click.
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>Contact Us</h5>
+            <ul class="list-unstyled">
+              <li>Email: 4IRdevelopmentteam@uj.ac.za</li>
+              <li>Phone: +123 456 7890</li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>Follow Us</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#"><i class="fa fa-facebook"></i> Facebook</a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-linkedin"></i> LinkedIn</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <p>
+              &copy; 2024 DIGITAL MATURITY-VALUE CHAIN-BUSINESS PROCESS. All
+              rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userTypeSelect = document.getElementById("users");
+        const businessSectorDiv = document.getElementById("business-sector");
+
+        userTypeSelect.addEventListener("change", function () {
+          const selectedValue = this.value;
+
+          if (
+            selectedValue === "Business Analyst" ||
+            selectedValue === "Business Manager"
+          ) {
+            businessSectorDiv.classList.remove("hidden");
+            businessSectorDiv
+              .querySelector("select")
+              .setAttribute("required", "required");
+          } else {
+            businessSectorDiv.classList.add("hidden");
+            businessSectorDiv
+              .querySelector("select")
+              .removeAttribute("required");
+          }
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select all flash message elements
+        const flashes = document.querySelectorAll(".flashes li");
+
+        // Check if there are any flash messages
+        if (flashes.length > 0) {
+          // Set the timeout duration (in milliseconds)
+          const timeoutDuration = 5000; // 5 seconds
+
+          // Set a timeout to hide the flash messages after the duration
+          setTimeout(() => {
+            flashes.forEach((flash) => {
+              // Add a fade-out effect (optional)
+              flash.style.transition = "opacity 0.5s ease";
+              flash.style.opacity = "0";
+
+              // Remove the flash message from the DOM after the transition
+              setTimeout(() => {
+                flash.remove();
+              }, 200); // Match the transition duration
+            });
+          }, timeoutDuration);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM - Administrator</title>
+    <!-- Include necessary CSS libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Include Alpine.js library -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="/static/CSS/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="/static/JS/code.js"></script>
+</head>
+
+<body x-data="AutomatedDigitalMaturity">
+    <div class="dashboard-container">
+        
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Welcome Box -->
+            <div class="welcome-box-home">
+
+                <div class="header-section-top">
+                    <h1 class="page-title">THE SECTOR SPECIFIC DIGITAL MATURITY FRAMEWORK</h1>
+                    
+                    <a href="/login" class="sign-in-btn">SIGN IN</a>
+                </div>
+
+
+                <div id="imageCarousel" class="carousel slide">
+                    
+                    <div class="carousel-inner">
+                        <template x-for="(image, index) in images" :key="index">
+                            <div class="carousel-item" :class="{ 'active': index === currentIndex }">
+                                <img class="homeLoopingImage" :src="image" alt="">
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+           
+          <div class="home-flex-box">
+            <br><br>
+            <div class="table-responsive-home">
+
+                <h3>MAKING THE MOST OF DIGITAL</h3>
+                <P>
+                 A digitally mature organisation is one that is making the best use of digital 
+                 technology and its associated culture and networks in everything it does. <br><br>
+                 This means digital is part of the DNA of the organisation. Being digitally mature is different to digitising systems, processes, products and activities. 
+                </P> <br>
+
+                <h3>WANT TO KNOW YOUR DIGITAL WORKPLACE MATURITY LEVEL ?</h3> <br>
+                It's time to find out your current level of digital workplace maturity. Our toolkit makes it much easy for you to know 
+                the digital maturity level of your business sector by answering some few simple questions relating to the different departments
+                of your business enterprise
+                
+               <ul>
+                 <li>Business Sector</li>
+                 <li>Business Element</li>
+                 <li>Sub-Category</li>
+                 
+               </ul>
+
+
+               <h3>THE SIX-LEVEL ASSESSMENT METRIC</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black;">LEVEL</th>
+                            <th style="border: 1px solid black;">PERCENTAGE RANGE</th>
+                            <th style="border: 1px solid black;">IMPLICATIONS</th>
+              
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>0</td>
+                            <td>0 to 15.5 &nbsp;</td>
+                            <td>Aspect practices are yet to be implemented or incomplete, Organization only performs essential operations.
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>16 to 34.5</td>
+                            <td>Practices are fully implemented. Transition to Industry 4.0 has commenced.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>35 to 50.5&nbsp;&nbsp;</td>
+                            <td>Initial implementation of Industry 4.0 technologies. No integration yet. Physical systems can be represented virtually.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>51 to 67.5&nbsp;&nbsp;</td>
+                            <td>Vertical integration from shop floor to ERP level, Standardization of processes and operations. </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>68 to 84.5&nbsp;</td>
+                            <td>Horizontal integration across the value chain. Application of Industry 4.0 technologies such Big Data and artificial intelligence. Autonomous optimization.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>85 to 100&nbsp;</td>
+                            <td>End-to-end integration. Continuous improvement. Smart and autonomous optimization. </td>
+
+                        </tr>
+                        
+
+                    </tbody>
+                </table>
+
+            </div>
+            
+            <div class="other-section-home">
+                <span>
+                    <h3 x-text="imageWhyUs[currentIndex].text1" ></h3>
+                </span><br>
+                <img :src="imageWhyUs[currentIndex].image" alt="Current Image" class="homeImage"><br> 
+                <br>
+                <span>
+                    <h5 x-text="imageWhyUs[currentIndex].text2" ></h5>
+
+                </span>
+
+            </div>
+
+
+          </div>
+          
+
+
+
+
+
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>About Us</h5>
+                    <p>We provide with a dynamic digital maturity assessment for all your business functions and their
+                        classifed processes and activities with just one click.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: 4IRdevelopmentteam@uj.ac.za</li>
+                        <li>Phone: +123 456 7890</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2024 DIGITAL MATURITY-VALUE CHAIN-BUSINESS PROCESS. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userTypeSelect = document.getElementById('users');
+            const businessSectorDiv = document.getElementById('business-sector');
+
+            userTypeSelect.addEventListener('change', function () {
+                const selectedValue = this.value;
+
+                if (selectedValue === 'Business Analyst' || selectedValue === 'Business Manager') {
+                    businessSectorDiv.classList.remove('hidden');
+                    businessSectorDiv.querySelector('select').setAttribute('required', 'required');
+                } else {
+                    businessSectorDiv.classList.add('hidden');
+                    businessSectorDiv.querySelector('select').removeAttribute('required');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

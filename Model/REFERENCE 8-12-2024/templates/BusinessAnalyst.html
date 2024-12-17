@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analyst Dashboard</title>
+    <link href="/static/css/admin/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="/static/js/code.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        .form-inline {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-inline label {
+            margin-right: 10px;
+        }
+
+        .form-inline select {
+            flex: 1;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .submit-btn {
+            margin-top: 10px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body x-data="AutomatedDigitalMaturity" x-cloak>
+    <div class="container">
+      
+        <div class="main-content">
+            <div class="cards">
+                <div class="card">
+                    <a href="#"><i class="fas fa-file-alt"></i></a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card">
+                    <form action="/logout">
+                        <button type="submit"><a href="#"><i class="fas fa-lock"></i></a></button>
+                    </form>
+                </div>
+            </div>
+            <!-- Section to display business functions -->
+            <section>
+                <div>
+                    <div class="main-content">
+                        <div class="cards">
+                            <div class="card">1</div>
+                            <div class="card">
+                                <div style="display: inline;">
+                                    <form action="/select_business_function_in_business_function_html_page" method="post" class="form-container">
+                                        <div class="form-inline">
+                                            <label>
+                                                <h3>Business Functions</h3>
+                                            </label>
+                                            <select class="input" name="business_function_user" required>
+                                                <option value="" disabled selected>Select a business function</option>
+                                                {% for function in business_functions %}
+                                                <option value="{{ function}}">{{ function}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="submit-btn">SUBMIT BUSINESS FUNCTION</button>
+                                    </form>
+                                    <div>
+                                        {% if SectorError %}
+                                        <p class="error">{{ SectorError }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">3</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DM - Business Manager</title>
+    <!-- Include necessary CSS libraries -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Include Alpine.js library -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link rel="stylesheet" href="/static/CSS/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="/static/JS/code.js"></script>
+  </head>
+
+  <body x-data="AutomatedDigitalMaturity">
+    <div class="dashboard-container">
+      <div class="header-section-top">
+        <h1 class="page-title">
+          THE SECTOR SPECIFIC DIGITAL MATURITY FRAMEWORK
+        </h1>
+        <form action="/logout">
+          <button class="sign-in-btn" type="submit">LOG OUT</button>
+        </form>
+      </div>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="graduate-icon">
+          <img
+            src="./images/id pict.jfif"
+            alt="Avatar"
+            style="border-radius: 50%; width: 70px"
+          />
+        </div>
+        <br /><br />
+        <ul>
+          <li x-on:click="openHome('Admin_Home_Page')">HOME</li>
+          <li x-on:click="openHome('manage_business_sector')">Generate Code</li>
+          <li x-on:click="openHome('manage_user_account')">
+            View Generated Code
+          </li>
+          <li x-on:click="openHome('manage_user_account')">
+            Business Process Maping
+          </li>
+          <li x-on:click="openHome('manage_user_account')">Value Chain</li>
+        </ul>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Welcome Box -->
+        <div class="welcome-box">
+          <br />Welcome, {{user_name}}
+          <br />
+          <div class="date">
+            {% with messages = get_flashed_messages(with_categories=true) %} {%
+            if messages %}
+            <ul class="flashes">
+              {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %} {% endwith %}
+          </div>
+        </div>
+
+        <div class="">
+            <div class="maturity_result_buttons"  >
+
+
+          
+                <button style="float: right"  x-on:click="openHome('view_maturity_results')" >  VIEW RESULTS  </button>
+        
+                <button style="float: left"  x-on:click="openHome('view_model_classification_results_predictions')" >  MODEL CLASSIFICATION RESULT  </button>
+               
+               
+                </div>
+
+        </div> 
+
+
+        <!-- Admin Home Page -->
+        <div class="table-responsive">
+          <div x-show="view_maturity_results">
+            <h2>DIGITAL MATRITY LEVELS</h2>
+            {% for bf, data in business_data.items() %}
+            <h1>{{ bf }}</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>Business Process</th>
+                  <th>Percentage As Is</th>
+                  <th>Percentage To Be</th>
+                  <th>Feedback As Is</th>
+                  <th>Feedback To Be</th>
+                  <th>Growth Rate</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for measuring_elt_user, exped_sum, as_is_sum, to_be_sum,
+                percent_maturity_as_is, percent_maturity_to_be, feedback_as_is,
+                feedback_to_be, growth_rate, time_to_grow in data %}
+                <tr>
+                  <td>{{ measuring_elt_user }}</td>
+                  <td>{{ percent_maturity_as_is }}%</td>
+                  <td>{{ percent_maturity_to_be }}%</td>
+                  <td>{{ feedback_as_is }}</td>
+                  <td>{{ feedback_to_be }}</td>
+                  <td>{{ growth_rate }}</td>
+                  <td>{{ time_to_grow }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% endfor %}
+
+            <section>
+              <div class="maturity-box">
+                <h2>Bar Plots</h2>
+
+                <div class="plot-grid-maturity">
+                  {% for bar_plot_image in bar_plot_images %}
+
+                  <div class="plot-item-maturity">
+                    <img
+                      src="data:image/png;base64,{{ bar_plot_image }}"
+                      alt="Bar Plot"
+                    />
+                  </div>
+
+                  {% endfor %}
+                </div>
+              </div>
+            </section>
+            <br /><br />
+
+            <section>
+              <!-- This section displays the plots -->
+              <div class="maturity-box">
+                <h2>Diamond Analysis</h2>
+                <div class="plot-grid-maturity">
+                  {% for image in plot_images %}
+                  <div class="plot-item-maturity">
+                    <img
+                      src="data:image/png;base64,{{ image }}"
+                      alt="Business Function Plot"
+                    />
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </section>
+            <br /><br />
+
+            <section>
+              <div class="maturity-box">
+                <h2>Growth Rate Curves</h2>
+
+                <div class="plot-grid-maturity">
+                  {% for growth_rate_image in growth_rate_images %}
+
+                  <div class="plot-item-maturity">
+                    <img
+                      src="data:image/png;base64,{{ growth_rate_image }}"
+                      alt="Growth Rate Curve"
+                    />
+                  </div>
+
+                  {% endfor %}
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+     
+        <div x-show="view_model_classification_results_predictions">
+            <section>
+                <div class="table-responsive">
+                  <h3>DIGITAL MATURITY CLASSIFCATION</h3>
+                  <!-- Form for each row -->
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Business Function</th>
+                        <th>Digital Maturity Type</th>
+                        <th>Maturity As-Is</th>
+                        <th>Maturity To-Be</th>
+                        <th>Value Chain Recommendation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for record in maturity_data %}
+                      <tr>
+                        <td>{{ record[1] }}</td>
+                        <td>{{ record[0] }}</td>
+                        <td>{{ record[2] }}</td>
+                        <td>{{ record[3] }}</td>
+                        <td>
+                          <form
+                            action="/recommendations_from_value_chain"
+                            method="POST"
+                          >
+                            <input
+                              type="hidden"
+                              name="business_function_recomm"
+                              value="{{ record[1] }}"
+                            />
+                            <button type="submit">GET VC RECOMMENDATION</button>
+                          </form>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+    
+              <!-- Section for the pie charts -->
+              <section>
+                <div class="maturity_pie_plots">
+                  <div class="maturity-box">
+                    <h1>Pie Chart - Maturity As-Is</h1>
+                    <div class="plot-grid-maturity">
+                      {% if pie_chart_as_is %}
+                      <div class="plot-item-maturity">
+                        <img
+                          src="data:image/png;base64,{{ pie_chart_as_is }}"
+                          alt="Pie Chart As-Is"
+                        />
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+    
+                  <div class="maturity-box">
+                    <h1>Pie Chart - Maturity To-Be</h1>
+                    <div>
+                      {% if pie_chart_to_be %}
+                      <div class="plot-item-maturity">
+                        <img
+                          src="data:image/png;base64,{{ pie_chart_to_be }}"
+                          alt="Pie Chart To-Be"
+                        />
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+          </div>
+    
+    
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>About Us</h5>
+            <p>
+              We provide with a dynamic digital maturity assessment for all your
+              business functions and their classifed processes and activities
+              with just one click.
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>Contact Us</h5>
+            <ul class="list-unstyled">
+              <li>Email: 4IRdevelopmentteam@uj.ac.za</li>
+              <li>Phone: +123 456 7890</li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>Follow Us</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#"><i class="fa fa-facebook"></i> Facebook</a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-linkedin"></i> LinkedIn</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <p>
+              &copy; 2024 DIGITAL MATURITY-VALUE CHAIN-BUSINESS PROCESS. All
+              rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userTypeSelect = document.getElementById("users");
+        const businessSectorDiv = document.getElementById("business-sector");
+
+        userTypeSelect.addEventListener("change", function () {
+          const selectedValue = this.value;
+
+          if (
+            selectedValue === "Business Analyst" ||
+            selectedValue === "Business Manager"
+          ) {
+            businessSectorDiv.classList.remove("hidden");
+            businessSectorDiv
+              .querySelector("select")
+              .setAttribute("required", "required");
+          } else {
+            businessSectorDiv.classList.add("hidden");
+            businessSectorDiv
+              .querySelector("select")
+              .removeAttribute("required");
+          }
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select all flash message elements
+        const flashes = document.querySelectorAll(".flashes li");
+
+        // Check if there are any flash messages
+        if (flashes.length > 0) {
+          // Set the timeout duration (in milliseconds)
+          const timeoutDuration = 5000; // 5 seconds
+
+          // Set a timeout to hide the flash messages after the duration
+          setTimeout(() => {
+            flashes.forEach((flash) => {
+              // Add a fade-out effect (optional)
+              flash.style.transition = "opacity 0.5s ease";
+              flash.style.opacity = "0";
+
+              // Remove the flash message from the DOM after the transition
+              setTimeout(() => {
+                flash.remove();
+              }, 200); // Match the transition duration
+            });
+          }, timeoutDuration);
+        }
+      });
+    </script>
+  </body>
+</html>

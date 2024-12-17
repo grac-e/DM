@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL | Login Page</title>
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>DIGITAL MATURITY | Login</h2>
+            <form action="/login" method="POST">
+                <div>
+                    <i class="fas fa-envelope fa-2x"></i>
+                    <input type="email" class="input" id="email" placeholder="Enter email" name="email" required>
+                </div>
+                <br><br>
+
+                <div>
+                    <i class="fas fa-user-plus fa-2x"></i>
+                    <select name="users" id="user-type" class="input" required>
+                        <option value="">Select a user type</option>
+                        <option value="Business Analyst">Business Analyst</option>
+                        <option value="Business Manager">Business Manager</option>
+                        <option value="Administrator">Administrator</option>
+                    </select>
+                </div>
+                <br><br>
+
+                <div id="business-sector" class="hidden">
+                    <i class="fas fa-industry fa-2x"></i>
+                    <select name="business_sector" class="input" id="business-sector-select">
+                        <option value="">Select your business sector</option>
+                        {% for sector in business_sectors %}
+                            <option value="{{ sector[0] }}">{{ sector[0] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <br><br>
+
+                <div>
+                    <i class="fas fa-lock fa-2x"></i>
+                    <input type="password" class="input" id="password" placeholder="Enter password" name="password" required>
+                </div>
+                <br><br>
+
+                <button type="submit" class="btn">Login</button>
+
+                <div class="links">
+                    <p><a href="/requestPasswordChange">Forgot Password?</a> | <a href="/register">Register?</a></p>
+                </div>
+
+            </form>
+
+            <div>
+                {% if error %}
+                <p class="error">{{ error }}</p>
+                {% endif %}
+            </div>
+
+            <div class="error">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userTypeSelect = document.getElementById('user-type');
+            const businessSectorDiv = document.getElementById('business-sector');
+            const businessSectorSelect = document.getElementById('business-sector-select');
+
+            userTypeSelect.addEventListener('change', function () {
+                const selectedValue = this.value;
+
+                if (selectedValue === 'Business Analyst' || selectedValue === 'Business Manager') {
+                    businessSectorDiv.classList.remove('hidden');
+                    businessSectorSelect.setAttribute('required', 'required');
+                } else {
+                    businessSectorDiv.classList.add('hidden');
+                    businessSectorSelect.removeAttribute('required');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

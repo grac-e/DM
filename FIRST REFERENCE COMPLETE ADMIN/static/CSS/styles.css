@@ -1,0 +1,559 @@
+/* General body and HTML settings */
+body, html {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-container {
+    flex-grow: 1;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    height: auto;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 12%;
+    font-size: 13px;
+    background-color: rgb(61, 11, 86);
+    padding: 20px;
+    color: white;
+    border-right: 4px solid #8f6620;
+    box-shadow: inset 0 -8px 15px rgba(75, 0, 130, 0.7);
+    margin-top: 90px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 20PX;
+}
+
+.sidebar ul li {
+    margin: 28px 0;
+    transition: background-color 0.3s ease;
+    border-top: 1.5px solid #8f6620;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: #8f6620;
+    color: white;
+    height: 30px;
+}
+
+.sidebar .graduate-icon {
+    margin-bottom: 20px;
+    background: #8f6620;
+    border-radius: 20px;
+    height: 110px;
+    width: 105px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-top: 80px;
+    width: 88%;
+}
+
+.welcome-box {
+    background-color: white;
+    background-image: url('/static/IMAGES/illustration (2).png');
+   
+    background-size: cover;
+    background-position: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    height: 20vh;
+    /* margin-top: 10px; */
+    padding: 20px;
+}
+
+
+
+.welcome-box .date {
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: normal;
+    color: grey;
+}
+
+.main-box {
+    background-color: white;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+}
+
+.sub-box {
+    background-color: white;
+    color: #333;
+    padding: 20px;
+    height: 140px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    border-bottom: 2px solid purple;
+    border-right: 2px solid purple;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5), 0 2px 2px rgba(75, 0, 130, 0.7);
+    transition: width 0.9s ease, box-shadow 0.9s ease;
+    cursor: pointer;
+}
+
+.sub-box:hover {
+    width: 100%;
+    box-shadow: inset 0 -2px 15px rgba(75, 0, 130, 0.7);
+}
+
+.tooltip-text {
+    display: block;
+    opacity: 0;
+    font-size: 12px;
+    color: #666;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    text-align: center;
+    transform: translateY(10px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.sub-box:hover .tooltip-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Footer */
+.footer {
+    background-color: #240544;
+    color: white;
+    padding: 30px 0;
+    font-size: 14px;
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.footer .container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer h5 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul li a {
+    color: #A37ACC;
+    text-decoration: none;
+}
+
+.footer ul li a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* Ensure table takes full width on large screens */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling on small screens */
+    margin-top: 20px; /* Adds some spacing above the table */
+}
+
+/* Ensure the table inside takes the full width */
+.table-responsive table {
+    width: 100%; /* Full width on large screens */
+    border-collapse: collapse;
+    table-layout: auto; /* Allow columns to adjust based on content */
+}
+
+.table-responsive th, 
+.table-responsive td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table-responsive thead {
+    background-color: #3c1b50;
+    color: white;
+    /* text-transform: uppercase; */
+}
+
+.table-responsive tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-responsive tbody td {
+    padding: 15px;
+    text-align: center;
+}
+
+.table-responsive select{
+    width: 190px;
+}
+
+
+
+  /* Submit button styling */
+  .submit-btn {
+    width: 40%;
+    padding: 10px;
+    background-color: #3c1b50;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: rgba(0, 247, 255, 0.425);
+  }
+
+  /* Submit button styling */
+.submit-btn-admin {
+    width: 20%;
+    padding: 10px;
+    background-color: #3c1b50;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block; /* Makes the button a block-level element */
+    margin: 20px auto; /* Centers the button horizontally and adds vertical spacing */
+}
+
+.submit-btn-admin:hover {
+    background-color: rgba(0, 247, 255, 0.425);
+}
+
+
+
+  .single-card-sub-box {
+    background-color: white;
+    padding: 20px;
+    height: auto;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    /* background-image: url("/static/images/CHIET\ PICS/chita 3.png");  */
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    background-attachment: fixed;
+    /* background-color: grey; */
+    
+  }
+
+
+
+  .form-group-alpine{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height:auto;
+
+  }
+
+  h1{
+    font-size: medium;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  input{
+    height: 50px;
+  }
+  select{
+    height: 50px;
+  }
+
+  .form-group-alpine select{
+    height: 50px;
+    width: 100%;
+
+  }
+
+
+  .no-underline {
+    text-decoration: none;
+    color: white;
+}
+
+
+.flashes{
+
+    font-size: 20px;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+/* css for the index.html  */
+
+/* Header Section */
+.header-section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    padding-right: 50px;
+    padding: 20px;
+    background-color: #3c1b50;
+    color: white;
+    z-index: 10;
+}
+
+.page-title {
+    font-size: 18px;
+    margin: 0;
+    /* position: fixed; */
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.sign-in-btn {
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    
+    /* padding-left: 20px; */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sign-in-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Carousel and Image Heights */
+.welcome-box-home {
+    position: relative;
+    height: 60vh; /* You can control the height here */
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    width: 100%;
+    height: 100%; /* Ensure the images take the full container height */
+}
+
+.homeLoopingImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Entire image will fit into the container without cropping */
+}
+
+
+.home-flex-box {
+
+    display: flex;
+}
+
+/* Ensure table takes full width on large screens */
+.table-responsive-home {
+    width: 50%;
+    overflow-x: auto; /* Enable horizontal scrolling on small screens */
+    margin-top: 20px; /* Adds some spacing above the table */
+}
+
+/* Ensure the table inside takes the full width */
+.table-responsive-home table {
+    width: 100%; /* Full width on large screens */
+    border-collapse: collapse;
+    table-layout: auto; /* Allow columns to adjust based on content */
+}
+
+.table-responsive-home th, 
+.table-responsive-home td {
+    padding: 10px;
+    width: auto;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table-responsive-home thead {
+    background-color: #3c1b50;
+    color: white;
+    /* text-transform: uppercase; */
+}
+
+.table-responsive-home tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-responsive-home tbody td {
+    padding: 15px;
+    text-align: center;
+}
+
+.other-section-home {
+    display: flex;
+    width: 50%;
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center; /* Centers the image vertically (if needed) */
+    flex-direction: column; /* This ensures text and image stack vertically */
+    text-align: center; /* Center text alignment */
+    height: 100%; /* Ensures it takes the full height if needed */
+}
+
+.homeImage {
+    max-width: 100%; /* Ensure the image scales properly within the container */
+    max-height: 400px; /* Ensure the image doesn't exceed a certain height */
+    object-fit: contain; /* Ensure the image scales proportionally */
+}
+
+
+
+
+/* The login css  */
+.login-container-main {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    /* background-color: brown; */
+    padding-left: 50px; /* Add padding to push the entire content from the left */
+    padding-top: 120px;
+    border-radius: 10px;
+    padding-bottom: 50px;
+   
+}
+
+/* Container left with width and additional margin if needed */
+.login-container-left {
+    width: 40%;
+    margin-left: 20px; /* You can adjust this margin value as needed */
+    /* background-color: #333; */
+    border-radius: 20px; /* Add border radius for a rounded border */
+  border: 2px solid #333
+
+}
+
+/* Container right with width and additional margin if needed */
+.login-container-right {
+    width: 20%;
+    margin-left: 20px; /* This ensures both sections are separated if needed */
+    border-radius: 20px; /* Add border radius for a rounded border */
+  border: 2px solid #333
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        text-align: center;
+    }
+
+    .main-box {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .table-responsive {
+        overflow-x: auto; /* Enable horizontal scrolling on small screens */
+    }
+    
+    .table-responsive table {
+        width: 100%; /* Table still takes full width but becomes scrollable */
+    }
+}
+
+@media (max-width: 480px) {
+    .sub-box {
+        padding: 10px;
+    }
+
+    .welcome-box {
+        font-size: 18px;
+    }
+
+    .footer h5 {
+        font-size: 14px;
+    }
+
+    .footer ul li {
+        margin-bottom: 5px;
+    }
+
+    .footer {
+        font-size: 12px;
+    }
+}

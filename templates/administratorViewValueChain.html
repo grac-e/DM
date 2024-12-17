@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DM - Administrator</title>
+    <!-- Include necessary CSS libraries -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Include Alpine.js library -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link rel="stylesheet" href="/static/CSS/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="/static/JS/code.js"></script>
+  </head>
+
+  <body x-data="AutomatedDigitalMaturity">
+    <div class="dashboard-container">
+      <div class="header-section-top">
+        <h1 class="page-title">
+          THE SECTOR SPECIFIC DIGITAL MATURITY FRAMEWORK
+        </h1>
+        <form action="/logout">
+          <button class="sign-in-btn" type="submit">LOG OUT</button>
+        </form>
+      </div>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="graduate-icon">
+          <img
+            src="/static/IMAGES/id pict.jfif"
+            alt="Avatar"
+            style="border-radius: 50%; width: 70px"
+          />
+        </div>
+        <br /><br />
+        <ul>
+          <li x-on:click="openHome('Admin_Home_Page')">
+            <a href="{{ url_for('dashboardAdministrator') }}" class="no-underline">HOME</a>
+          </li>
+          <li x-on:click="openHome('manage_business_sector')">
+            Manage Business sector
+          </li>
+          <li x-on:click="openHome('manage_user_account')">
+            Manage User Account
+          </li>
+          <li x-on:click="openHome('manage_business_process_data')">
+            Manage Business Process
+          </li>
+          <li x-on:click="openHome('manage_value_chain_data')">
+            Manage Value chain
+          </li>
+          <li x-on:click="openHome('manage_csv_file_upload')">
+            Manage Upload CSV
+          </li>
+        </ul>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Welcome Box -->
+        <div class="welcome-box">
+          <br />Welcome, {{user_name}}
+          <br />
+          <div class="date">
+            {% with messages = get_flashed_messages(with_categories=true) %} {%
+            if messages %}
+            <ul class="flashes">
+              {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %} {% endwith %}
+          </div>
+        </div>
+
+        <!-- Admin Home Page -->
+        <div class="table-responsive" x-show="Admin_Home_Page" x-cloak>
+          <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Business sector</th>
+                    <th>Business function</th>
+                    <th>Business process</th>
+                    <th>Business Activities</th>
+                    <th>Business Skills</th>
+                    <th>Business Technology</th>
+                    <th>DELETE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in combined_value_chain_data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td> <!-- This is the Technology column -->
+                    <td>
+                        <form action="/delete_value_chain_data" method="post">
+                            <input type="hidden" name="record_id" value="{{ row[0] }}" />
+                            <button type="submit" class="submit-btn-admin">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+          <form action="/view_combined_value_chain_data" method="post">
+            <button type="submit" class="submit-btn-admin">Reload Data</button>
+          </form>
+        </div>
+
+        <!-- Manage Business Sector Section -->
+        <div class="main-box" x-show="manage_business_sector" x-cloak>
+          <div class="sub-box">
+            Add new business sector
+            <div class="graduate-icon">
+              <button
+                class="submit-btn"
+                x-on:click="openHome('computational_interface_new_business_sector')"
+              >
+                ADD
+              </button>
+              <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+            </div>
+            <div class="tooltip-text">Manually adding a business sector</div>
+          </div>
+
+          <div class="sub-box">
+            Update business sector
+            <div class="graduate-icon">
+              <button
+                class="submit-btn"
+                x-on:click="openHome('computational_interface_update_business_sector')"
+              >
+                UPDATE
+              </button>
+              <!-- <img src="./images/19.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+            </div>
+            <div class="tooltip-text">Manually updating a business sector</div>
+          </div>
+
+          <div class="sub-box">
+            Answer ratings
+            <div class="graduate-icon">
+              <button
+                class="submit-btn"
+                x-on:click="openHome('assign_answer_rating_for_business_functions')"
+              >
+                RATE
+              </button>
+              <!-- <img src="./images/17.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+            </div>
+            <div class="tooltip-text">
+              Manually adding an answer rating for a business sector
+            </div>
+          </div>
+
+          <div class="sub-box">
+            Update answer ratings
+            <div class="graduate-icon">
+              <button
+                class="submit-btn"
+                x-on:click="openHome('update_old_answer_rating')"
+              >
+                UPDATE
+              </button>
+              <!-- <img src="./images/15.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+            </div>
+            <div class="tooltip-text">
+              Manually updating an answer rating for a business sector
+            </div>
+          </div>
+
+          <div class="sub-box">
+            View answer ratings
+            <div class="graduate-icon">
+              <form action="/view_combined_answer_rating_data" method="GET">
+                <button class="submit-btn">VIEW</button>
+            </form>
+            
+            
+            
+            
+            
+            </div>
+            <div class="tooltip-text">View all answer ratings</div>
+          </div>
+        </div>
+
+        <!-- Manage User Account Section -->
+        <div class="main-box" x-show="manage_user_account" x-cloak>
+          <div class="sub-box">
+            Add new user
+            <div class="graduate-icon">
+              <button class="submit-btn" x-on:click="openHome('add_new_user')">
+                ADD USER
+              </button>
+              <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+            </div>
+            <div class="tooltip-text">Manually adding a new user account</div>
+          </div>
+
+          <div class="sub-box">
+            View all user accounts
+            <div class="graduate-icon">
+              <form action="/view_combined_user_accounts" method="GET">
+                <button class="submit-btn">VIEW</button>
+            </form>
+            
+             
+            </div>
+            <div class="tooltip-text">View all user accounts</div>
+          </div>
+
+          <div class="sub-box">
+            CHANGE PASSWORD
+            <div class="graduate-icon">
+              <button
+                class="submit-btn"
+                x-on:click="openHome('change_password')"
+              >
+                Change
+              </button>
+              <!-- <img src="./images/17.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+            </div>
+            <div class="tooltip-text">
+              Change the password of a user account
+            </div>
+          </div>
+        </div>
+
+        <!-- Value chain data processing -->
+        <div class="main-box" x-show="manage_value_chain_data" x-cloak>
+          <div class="sub-box">
+            Add new value chain entry
+            <div class="graduate-icon">
+              <button
+                class="submit-btn"
+                x-on:click="openHome('add_new_value_chain_record')"
+              >
+                ADD
+              </button>
+              <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+            </div>
+            <div class="tooltip-text">
+              Manually adding a new entry for the value chain
+            </div>
+          </div>
+
+          <div class="sub-box">
+            View all value chain record
+            <div class="graduate-icon">
+              <form action="/view_combined_value_chain_data" method="GET">
+                <button class="submit-btn">VIEW</button>
+            </form>
+           
+           
+           
+           
+           
+           
+           
+            </div>
+            <div class="tooltip-text">
+              View all value chain record in the database
+            </div>
+          </div>
+
+          <div class="sub-box">
+            Update value chain record
+            <div class="graduate-icon">
+              <button
+                class="submit-btn"
+                x-on:click="openHome('update_value_chain_record')"
+              >
+                Update
+              </button>
+              <!-- <img src="./images/17.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+            </div>
+            <div class="tooltip-text">Update the record of a value chain</div>
+          </div>
+        </div>
+
+        <!-- Value business process processing -->
+        <div class="main-box" x-show="manage_business_process_data" x-cloak>
+          <div class="sub-box">
+            Add new business process entry
+            <div class="graduate-icon">
+              <button
+                class="submit-btn"
+                x-on:click="openHome('add_new_business_process_record')"
+              >
+                ADD
+              </button>
+              <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+            </div>
+            <div class="tooltip-text">
+              Manually adding a new entry for the business process
+            </div>
+          </div>
+
+          <div class="sub-box">
+            View all business process
+            <div class="graduate-icon">
+              <form action="/view_combined_business_process_data" method="GET">
+                <button class="submit-btn">VIEW</button>
+            </form>
+            
+            
+            
+            
+            
+            </div>
+            <div class="tooltip-text">
+              View all business process record in the database
+            </div>
+          </div>
+
+          <div class="sub-box">
+            Update business process record
+            <div class="graduate-icon">
+              <button
+                class="submit-btn"
+                x-on:click="openHome('update_business_process_record')"
+              >
+                Update
+              </button>
+              <!-- <img src="./images/17.png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+            </div>
+            <div class="tooltip-text">
+              Update the record of a business process
+            </div>
+          </div>
+        </div>
+
+        <!-- Manage CSV File Upload Section -->
+        <div class="main-box" x-show="manage_csv_file_upload" x-cloak>
+          <!-- <h1>UPLOAD CSV FILE INTO A DATABASE</h1> -->
+         
+         
+         
+         
+          <!-- Digital maturity database  -->
+
+          <div class="sub-box">
+            Upload digital maturity file<br />
+            <div class="graduate-icon">
+              <form
+                action="/upload_csv"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <input type="file" name="file" accept=".csv" />
+                <button type="submit" class="submit-btn-admin">Upload</button>
+                <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+              </form>
+            </div>
+          </div>
+
+          <!-- Value chain database  -->
+          <div class="sub-box">
+            Upload value chain file<br />
+            <div class="graduate-icon">
+              <form
+                action="/value_chain_upload_csv"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <input type="file" name="file" accept=".csv" />
+                <button type="submit" class="submit-btn-admin">Upload</button>
+                <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+              </form>
+            </div>
+          </div>
+
+          <!-- Answer rating database  -->
+          <div class="sub-box">
+            Upload answer rating file<br />
+            <div class="graduate-icon">
+              <form
+                action="/answer_rating_upload_csv"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <input type="file" name="file" accept=".csv" />
+                <button type="submit" class="submit-btn-admin">Upload</button>
+                <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+              </form>
+            </div>
+          </div>
+
+          <!--Digital maturity file format-->
+          <div class="sub-box">
+            Digital Maturity<br />
+            <div class="graduate-icon">
+              <form action="/digital_download_excel" method="get">
+                <button type="submit" class="submit-btn-admin">
+                  Download Excel format
+                </button>
+                <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+              </form>
+            </div>
+          </div>
+        
+        
+
+
+
+
+          <div class="sub-box">
+            Value Chain<br />
+            <div class="graduate-icon">
+              <form action="/value_chain_download_excel" method="get">
+                <button type="submit" class="submit-btn-admin">
+                  Download Excel format
+                </button>
+                <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+              </form>
+            </div>
+          </div>
+        
+        
+        <!--Answer rating-->
+        <div class="sub-box">
+            Answer Rating<br />
+            <div class="graduate-icon">
+              <form action="/answer_download_excel" method="get">
+                <button type="submit" class="submit-btn-admin">
+                  Download Excel format
+                </button>
+                <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+              </form>
+            </div>
+          </div>
+        
+        
+        <!--Upload Business Process file-->
+         
+
+         <div class="sub-box">
+            Upload Business PRocess<br />
+            <div class="graduate-icon">
+              <form
+                action="/business_process_upload_csv"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <input type="file" name="file" accept=".csv" />
+                <button type="submit" class="submit-btn-admin">Upload</button>
+                <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+              </form>
+            </div>
+          </div>
+        
+        
+          <!--Download business process file format-->
+
+
+
+
+
+          <div class="sub-box">
+            Business Process<br />
+            <div class="graduate-icon">
+              <form action="/business_process_download_excel" method="get">
+                <button type="submit" class="submit-btn-admin">
+                  Download Excel format
+                </button>
+                <!-- <img src="./images/14 (2).png" alt="Avatar" style="border-radius: 50%; width: 90px;"> -->
+              </form>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+        </div>
+
+        <!-- Adding a new business sector  -->
+        <div x-show="computational_interface_new_business_sector">
+          <h1>ADDING NEW BUSINESS SECTOR</h1>
+
+          <form action="/CombinedTiersForAll" method="POST">
+            <div class="form-group-alpine">
+              <label>Business Sector Name</label>
+              <input
+                name="business_sector_name"
+                placeholder="Enter the name of the business sector"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Business Function</label>
+              <input
+                name="business_function"
+                type="text"
+                placeholder="Enter the name of the business function"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Business Process</label>
+              <input
+                name="Measuring_Element"
+                class="input"
+                type="text"
+                placeholder="Enter the name of the business process"
+                required
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Business Process rating</label>
+              <input
+                name="Rating"
+                class="input"
+                type="number"
+                placeholder="Provide a rating of the business process"
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Business Process activity</label>
+              <input
+                name="subCategory_name"
+                class="input"
+                type="text"
+                placeholder="Provide business process activities"
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Maximum Rating</label>
+              <input
+                name="MaxRating"
+                class="input"
+                type="number"
+                placeholder="Provide a maximum rating"
+              />
+            </div>
+            <div>
+              <button type="submit" class="submit-btn-admin">
+                ADD RECORD
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Update business sector  -->
+        <div x-show="computational_interface_update_business_sector">
+          <h1>ADDING NEW BUSINESS SECTOR</h1>
+
+          <form action="/UpdateCombinedTiersForAll" method="POST">
+            <div class="form-group-alpine">
+              <label>Old Business Sector Name</label>
+              <input
+                name="oldbusiness_sector_name"
+                placeholder="Enter the name of the old business sector"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>old Business Function</label>
+              <input
+                name="oldbusiness_function"
+                type="text"
+                placeholder="Enter the name of the old business function"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Old Business Process</label>
+              <input
+                name="oldMeasuring_Element"
+                type="text"
+                placeholder="Enter the name of the old business process"
+                required
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Old Business Process rating</label>
+              <input
+                name="oldRating"
+                class="input"
+                type="number"
+                placeholder="Provide a rating of the old business process"
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Business Process activity</label>
+              <input
+                name="oldsubCategory_name"
+                class="input"
+                type="text"
+                placeholder="Provide old business process activities"
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Maximum Rating</label>
+              <input
+                name="oldMaxRating"
+                class="input"
+                type="number"
+                placeholder="Provide old maximum rating"
+              />
+            </div>
+
+            <br />
+
+            <!-- new  -->
+
+            <div class="form-group-alpine">
+              <label>New Business Sector Name</label>
+              <input
+                name="newbusiness_sector_name"
+                placeholder="Enter the name of the new business sector"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>New Business Function</label>
+              <input
+                name="newbusiness_function"
+                type="text"
+                placeholder="Enter the name of the New business function"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>New Business Process</label>
+              <input
+                name="newMeasuring_Element"
+                type="text"
+                placeholder="Enter the name of the New business process"
+                required
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>New Business Process rating</label>
+              <input
+                name="newRating"
+                type="number"
+                placeholder="Provide a rating of the New business process"
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>New Business Process activity</label>
+              <input
+                name="newsubCategory_name"
+                type="text"
+                placeholder="Provide New business process activities"
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>New Maximum Rating</label>
+              <input
+                name="newMaxRating"
+                type="number"
+                placeholder="Provide New maximum rating"
+              />
+            </div>
+
+            <div>
+              <button type="submit" class="submit-btn-admin">
+                UPDATE ENTRIES
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Answer rating  -->
+
+        <div x-show="assign_answer_rating_for_business_functions">
+          <h1>ADDING NEW ANSWER RATINGS</h1>
+
+          <form action="/ratingAnswersBusinessFunctions" method="POST">
+            <div class="form-group-alpine">
+              <label>Business Sector Name</label>
+              <input
+                name="rating_business_sector_name"
+                placeholder="Enter the name of the business sector"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>RATING NAME</label>
+              <input
+                name="rating_name_business_sector"
+                type="text"
+                placeholder="Enter rating name e.g Basic, Proactive, Resilent etc"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>DESCRIPTION</label>
+              <textarea
+                class="textarea-large"
+                name="rating_description_business_sector"
+                required
+              >
+              </textarea>
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>RATING VALUE</label>
+              <input
+                name="rating_value_business_sector"
+                type="number"
+                placeholder="Provide a rating of the answer rating"
+              />
+            </div>
+            <br />
+
+            <div>
+              <button type="submit" class="submit-btn-admin">
+                RATE SECTOR
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Update answer rating  -->
+        <div x-show="update_old_answer_rating">
+          <h1>UPDATE OLD ANSWER RATINGS</h1>
+
+          <form action="/updateratingAnswersBusinessFunctions" method="POST">
+            <div class="form-group-alpine">
+              <label>Business Sector Name</label>
+              <input
+                name="rating_business_sector_name"
+                placeholder="Enter the name of the business sector"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>RATING NAME</label>
+              <input
+                name="rating_name_business_sector"
+                type="text"
+                placeholder="Enter rating name e.g Basic, Proactive, Resilent etc"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>DESCRIPTION</label>
+              <textarea
+                class="textarea-large"
+                name="newrating_description_business_sector"
+                required
+              >
+              </textarea>
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>RATING VALUE</label>
+              <input
+                name="newrating_value_business_sector"
+                type="number"
+                placeholder="Provide a rating of the answer rating"
+              />
+            </div>
+            <br />
+
+            <div>
+              <button type="submit" class="submit-btn-admin">
+                UPDATE SECTOR RATING
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Manage user account  -->
+
+        <!-- Add new user account  -->
+        <div x-show="add_new_user" x-cloak>
+          <h1>ADDING NEW USERS</h1>
+
+          <form action="/Adminregister" method="POST" enctype="multipart/form-data">
+            <div class="form-group-alpine">
+              <label>Enter your username</label>
+              <input
+                type="text"
+                placeholder="Your Username"
+                name="name"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Email</label>
+              <input
+                type="text"
+                placeholder="Your Email"
+                name="email"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Select account type</label>
+              <select name="users" id="user-type"  required>
+                <option value="disabled">Select a user type</option>
+                <option value="Business Analyst">Business Analyst</option>
+                <option value="Business Manager">Manager</option>
+                <option value="Administrator">Administrator</option>
+              </select>
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Enter a password</label>
+              <input
+                type="password"
+                placeholder="New Password"
+                name="password"
+                required
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Confirm password</label>
+              <input
+                type="password"
+                placeholder="Confirm new Password"
+                name="confirm_password"
+                required
+              />
+            </div>
+            <br />
+
+
+            <div class="form-group-alpine" id="business-sector-wrapper">
+              <label>Select business sector</label>
+              <select name="business_sector" id="business-sector-select" >
+                <option value="disabled">Select your business sector</option>
+                {% for sector in business_sectors %}
+                <option value="{{ sector[0] }}">{{ sector[0] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Profile Picture</label>
+              <input
+                type="file"
+                name="User_photo"
+                class="upload-btn"
+                name="password"
+                accept="image/*"
+                id="User_photo"
+              />
+            </div>
+            <br />
+
+            <div>
+              <button type="submit" class="submit-btn-admin">ADD USER</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Change password  -->
+        <div x-show="change_password" x-cloak>
+          <h1>CHANGE PASSWORD OF A USER</h1>
+
+          <form method="POST" action="/change_password">
+            <div class="form-group-alpine">
+              <label>Email</label>
+              <input
+                type="email"
+                placeholder="Your Email"
+                name="email"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Enter a password</label>
+              <input
+                type="password"
+                placeholder="New Password"
+                name="newpassword"
+                required
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Confirm password</label>
+              <input
+                type="password"
+                placeholder="Confirm new Password"
+                name="confnewpassword"
+                required
+              />
+            </div>
+            <br />
+
+            <div>
+              <button type="submit" class="submit-btn-admin">
+                Update password
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!--Value chain -->
+
+        <!--Adding new value chain record-->
+        <div x-show="add_new_value_chain_record">
+          <h1>ADDING NEW VALUE CHAIN RECORD</h1>
+
+          <form action="/addinnewvaluechainrecord" method="POST">
+            <div class="form-group-alpine">
+              <label>Business Sector Name</label>
+              <input
+                name="value_chain_business_sector_name"
+                placeholder="Enter the name of the business sector"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Business Function</label>
+              <input
+                name="value_chain_business_function"
+                type="text"
+                placeholder="Enter the name of the business function"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Business Process</label>
+              <input
+                name="value_chain_business_process_name"
+                type="text"
+                placeholder="Enter the name of the business process"
+                required
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Business Activities</label>
+              <input
+                name="value_chain_business_activities"
+                type="rexr"
+                placeholder="Provide a rating of the business process"
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Skills</label>
+              <input
+                name="value_chain_skills"
+                type="text"
+                placeholder="Provide the skills for this business activities"
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Technology</label>
+              <input
+                name="value_chain_technology"
+                type="text"
+                placeholder="Provide the technology for this business activity"
+              />
+            </div>
+            <div>
+              <button type="submit" class="submit-btn-admin">ADD RECORD</button>
+            </div>
+          </form>
+        </div>
+
+        <!--Update value chain-->
+
+        <div x-show="update_value_chain_record">
+          <h1>UPDATING VALUE CHAIN SKILLS AND TECHNOLOGY</h1>
+
+          <form action="/updateValueChainSkillsandTechnology" method="POST">
+            <div class="form-group-alpine">
+              <label>Business Sector Name</label>
+              <input
+                name="value_chain_business_sector_name"
+                placeholder="Enter the name of the business sector"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Business Function</label>
+              <input
+                name="value_chain_business_function"
+                type="text"
+                placeholder="Enter the name of the business function for which skills and Technology wants to be updated"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Business Process</label>
+              <input
+                name="value_chain_business_process_name"
+                type="text"
+                placeholder="Enter the name of the business process for which skills and Technology wants to be updated"
+                required
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Business Activities</label>
+              <input
+                name="value_chain_business_activities"
+                type="rexr"
+                placeholder="Provide a rating of the business process for which skills and Technology wants to be updated"
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Skills</label>
+              <input
+                name="value_chain_old_skills"
+                type="text"
+                placeholder="Provide the old skills for this business activities"
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Technology</label>
+              <input
+                name="value_chain_old_technology"
+                type="text"
+                placeholder="Provide the old technology for this business activity"
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>New Skills</label>
+              <input
+                name="value_chain_new_skills"
+                type="text"
+                placeholder="Provide the new skills for this business activities"
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>New Technology</label>
+              <input
+                name="value_chain_new_technology"
+                type="text"
+                placeholder="Provide the new technology for this business activity"
+              />
+            </div>
+
+            <div>
+              <button type="submit" class="submit-btn-admin">
+                UPDATE RECORD
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!--Adding new business process-->
+        <div x-show="add_new_business_process_record">
+          <h1>ADDING NEW BUSINESS PROCESS RECORD</h1>
+
+          <form action="/addinnewbusinessprocessrecord" method="POST">
+            <div class="form-group-alpine">
+              <label>Business Sector Name</label>
+              <input
+                name="bp_business_sector_name"
+                placeholder="Enter the name of the business sector"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Business Function</label>
+              <input
+                name="bp_business_function"
+                type="text"
+                placeholder="Enter the name of the business function"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Business Process</label>
+              <input
+                name="bp_business_process_name"
+                type="text"
+                placeholder="Enter the name of the business process"
+                required
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Business Activities</label>
+              <input
+                name="bp_business_activities"
+                type="rexr"
+                placeholder="Provide a business activity for this process"
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Resources</label>
+              <input
+                name="bp_resources"
+                type="text"
+                placeholder="Provide a business resource for this activity"
+              />
+            </div>
+
+            <div>
+              <button type="submit" class="submit-btn-admin">ADD RECORD</button>
+            </div>
+          </form>
+        </div>
+
+        <!--Update business process-->
+        <div x-show="update_business_process_record">
+          <h1>UPDATING BUSINESS PROCESS ACTIVITIES AND RESOURCES</h1>
+
+          <form action="/updateBusinessProcessResource" method="POST">
+            <div class="form-group-alpine">
+              <label>Business Sector Name</label>
+              <input
+                name="bp_business_sector_name"
+                placeholder="Enter the name of the business sector"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Business Function</label>
+              <input
+                name="bp_business_function"
+                type="text"
+                placeholder="Enter the name of the business function for which skills and Technology wants to be updated"
+                required
+              />
+            </div>
+
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Business Process</label>
+              <input
+                name="bp_business_process_name"
+                type="text"
+                placeholder="Enter the name of the business process for which skills and Technology wants to be updated"
+                required
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+              <label>Old Business Activities</label>
+              <input
+                name="bp_old_business_activities"
+                type="rexr"
+                placeholder="Provide a rating of the business process for which skills and Technology wants to be updated"
+              />
+            </div>
+            <br />
+            <div class="form-group-alpine">
+              <label>Old Resources</label>
+              <input
+                name="bp_old_business_resources"
+                type="text"
+                placeholder="Provide the old skills for this business activities"
+              />
+            </div>
+            <br />
+
+            <div class="form-group-alpine">
+                <label>New Business Activities</label>
+                <input
+                  name="bp_new_business_activities"
+                  type="texr"
+                  placeholder="Provide the new activity for the business process"
+                />
+              </div><br>
+
+            <div class="form-group-alpine">
+              <label>New Business Resources</label>
+              <input
+                name="bp_new_business_resources"
+                type="text"
+                placeholder="Provide the old technology for this business activity"
+              />
+            </div>
+            <br />
+
+            <div>
+              <button type="submit" class="submit-btn-admin">
+                UPDATE RECORD
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>About Us</h5>
+            <p>
+              We provide with a dynamic digital maturity assessment for all your
+              business functions and their classifed processes and activities
+              with just one click.
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>Contact Us</h5>
+            <ul class="list-unstyled">
+              <li>Email: 4IRdevelopmentteam@uj.ac.za</li>
+              <li>Phone: +123 456 7890</li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>Follow Us</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#"><i class="fa fa-facebook"></i> Facebook</a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-linkedin"></i> LinkedIn</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <p>
+              &copy; 2024 DIGITAL MATURITY-VALUE CHAIN-BUSINESS PROCESS. All
+              rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userTypeSelect = document.getElementById("user-type");
+        const businessSectorWrapper = document.getElementById("business-sector-wrapper");
+
+        // Function to toggle the visibility of the business sector dropdown
+        function toggleBusinessSectorVisibility() {
+          const selectedUserType = userTypeSelect.value;
+
+          if (selectedUserType === "Administrator") {
+            businessSectorWrapper.style.display = "none"; // Hide business sector
+          } else {
+            businessSectorWrapper.style.display = "block"; // Show business sector
+          }
+        }
+
+        // Initially run the function to set the correct visibility on page load
+        toggleBusinessSectorVisibility();
+
+        // Add event listener to the user type dropdown to toggle visibility on change
+        userTypeSelect.addEventListener("change", toggleBusinessSectorVisibility);
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select all flash message elements
+        const flashes = document.querySelectorAll(".flashes li");
+
+        // Check if there are any flash messages
+        if (flashes.length > 0) {
+          // Set the timeout duration (in milliseconds)
+          const timeoutDuration = 5000; // 5 seconds
+
+          // Set a timeout to hide the flash messages after the duration
+          setTimeout(() => {
+            flashes.forEach((flash) => {
+              // Add a fade-out effect (optional)
+              flash.style.transition = "opacity 0.5s ease";
+              flash.style.opacity = "0";
+
+              // Remove the flash message from the DOM after the transition
+              setTimeout(() => {
+                flash.remove();
+              }, 200); // Match the transition duration
+            });
+          }, timeoutDuration);
+        }
+      });
+    </script>
+  </body>
+</html>
+
+

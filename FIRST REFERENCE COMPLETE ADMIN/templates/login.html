@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DM - Administrator</title>
+    <!-- Include necessary CSS libraries -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Include Alpine.js library -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link rel="stylesheet" href="/static/CSS/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="/static/JS/code.js"></script>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+  </head>
+
+  <body x-data="AutomatedDigitalMaturity">
+    <div class="dashboard-container">
+      <div class="header-section-top">
+        <h1 class="page-title">
+          THE SECTOR SPECIFIC DIGITAL MATURITY FRAMEWORK
+        </h1>
+        <button class="sign-in-btn">SIGN IN</button>
+      </div>
+
+      <div class="login-container-main">
+        <div class="login-container-left">
+
+
+
+            <form action="/login" method="POST">
+               
+            <h1>LOGIN</h1>
+          <div class="form-group-alpine">
+            <label>Email</label>
+            <input type="email"  id="email" placeholder="Enter email" name="email" required>
+          </div>
+
+          <br />
+
+          <div class="form-group-alpine">
+            <label>Select account type</label>
+            <select name="users" id="user-type" class="input" required>
+              <option value="">Select a user type</option>
+              <option value="Business Analyst">Business Analyst</option>
+              <option value="Business Manager">Business Manager</option>
+              <option value="Administrator">Administrator</option>
+            </select>
+          </div>
+
+          <br />
+
+          <!-- Hidden by default and shown based on selection -->
+          <div class="form-group-alpine hidden" id="business-sector">
+            <label>Select sector</label>
+            <select
+              name="business_sector"
+              class="input"
+              id="business-sector-select"
+            >
+              <option value="">Select your business sector</option>
+              {% for sector in business_sectors %}
+              <option value="{{ sector[0] }}">{{ sector[0] }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <br />
+
+          <div class="form-group-alpine">
+            <label>Enter a password</label>
+            <input
+              type="password"
+              placeholder="New Password"
+              name="password"
+              required
+            />
+          </div>
+        
+          <button type="submit" class="submit-btn-admin">Login</button>
+        
+
+         </form>
+        
+        
+        
+        
+        
+        
+        </div>
+
+        <div class="login-container-right">2</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>About Us</h5>
+            <p>
+              We provide with a dynamic digital maturity assessment for all your
+              business functions and their classified processes and activities
+              with just one click.
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>Contact Us</h5>
+            <ul class="list-unstyled">
+              <li>Email: 4IRdevelopmentteam@uj.ac.za</li>
+              <li>Phone: +123 456 7890</li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h5>Follow Us</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#"><i class="fa fa-facebook"></i> Facebook</a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-linkedin"></i> LinkedIn</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <p>
+              &copy; 2024 DIGITAL MATURITY-VALUE CHAIN-BUSINESS PROCESS. All
+              rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userTypeSelect = document.getElementById("user-type");
+        const businessSectorDiv = document.getElementById("business-sector");
+
+        userTypeSelect.addEventListener("change", function () {
+          const selectedValue = this.value;
+
+          if (selectedValue === "Business Analyst" || selectedValue === "Business Manager") {
+            businessSectorDiv.classList.remove("hidden"); // Show when Business Analyst or Manager
+            businessSectorDiv.querySelector('select').setAttribute("required", "required");
+          } else {
+            businessSectorDiv.classList.add("hidden"); // Hide when other options selected
+            businessSectorDiv.querySelector('select').removeAttribute("required");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

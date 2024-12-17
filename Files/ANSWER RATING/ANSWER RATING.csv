@@ -1,0 +1,16 @@
+business_sector,rating_name,rating_description,answer_rating_value
+MINING,Non-existent,An organization has zero awareness of industry 4.0 and does not have the ambition of incorporating into their business.,1
+MINING,Initial,An organization has minimal awareness of Industry 4.0 and no strategies or roadmaps have been outlined,2
+MINING,Ad-Hoc,"Some awareness of Industry 4.0 exists, but there are no formal strategies or roadmaps in place",3
+MINING,Foundational,"Industry 4.0 is acknowledged in business strategies, but no concrete roadmaps have been outlined.",5
+MINING,Reactive,"Business strategies include Industry 4.0, but no roadmaps have been outlined",7
+MINING,Planned,"Business strategies include Industry 4.0 and roadmaps have been outlined. However, there are no action plans for implementation.",8
+MINING,Proactive,"Business strategies include Industry 4.0 and roadmaps have been outlined. However, long-term action plans are ill-defined",9
+MINING,Structured,"Business strategies include Industry 4.0 and roadmaps with short-term action plans are in place, but medium- and long-term plans are underdeveloped",10
+ENERGY,Non-existent,An organization has zero awareness of industry 4.0 and does not have the ambition of incorporating into their business.,1
+ENERGY,Initial,An organization has minimal awareness of Industry 4.0 and no strategies or roadmaps have been outlined,2
+ENERGY,Exploratory,"An organization is exploring Industry 4.0 concepts, but strategies and roadmaps are still in the early stages of development
+",3
+ENERGY,Basic,"Business strategies include Industry 4.0, but no roadmaps have been outlined",4
+ENERGY,Reactive,"Business strategies include Industry 4.0, but no roadmaps have been outlined",5
+ENERGY,Planned,"Business strategies include Industry 4.0 and roadmaps have been outlined. However, there are no action plans for implementation.",6

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM | Registration Page</title>
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="register-box">
+            <h2>DIGITAL MATURITY REGISTRATION</h2>
+            <form action="/register" method="POST" enctype="multipart/form-data">
+                <div>
+                    <i class="fas fa-user fa-2x"></i>
+                    <input class="input" type="text" placeholder="Create your username" name="name" required id="name">
+                </div>
+                <br><br>
+
+                <div>
+                    <i class="fas fa-envelope fa-2x"></i>
+                    <input type="email" class="input" id="email" placeholder="Enter email" name="email" required>
+                </div>
+                <br><br>
+
+                <div>
+                    <i class="fas fa-user-plus fa-2x"></i>
+                    <select name="users" id="user-type" class="input" required>
+                        <option value="disabled">Select a user type</option>
+                        <option value="Business Analyst">Business Analyst</option>
+                        <option value="Business Manager">Business Manager</option>
+                        <option value="Administrator">Administrator</option>
+                    </select>
+                </div>
+                <br><br>
+
+                <div>
+                    <i class="fas fa-lock fa-2x"></i>
+                    <input type="password" class="input" id="password" placeholder="Enter password" name="password" required>
+                </div>
+                <br><br>
+
+                <div>
+                    <i class="fas fa-lock fa-2x"></i>
+                    <input type="password" class="input" id="confirm_password" placeholder="Confirm password" name="confirm_password" required>
+                </div>
+                <br><br>
+
+                <!-- Business Sector Dropdown -->
+                <div id="business-sector" class="hidden">
+                    <i class="fas fa-industry fa-2x"></i>
+                    <select name="business_sector" class="input" id="business-sector-select">
+                        <option value="">Select your business sector</option>
+                        {% for sector in business_sectors %}
+                            <option value="{{ sector[0] }}">{{ sector[0] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <br><br>
+
+                <div>
+                    <i class="fas fa-image fa-2x"></i>
+                    <input type="file" name="User_photo" class="upload-btn" accept="image/*" id="User_photo">
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+                <h4 class="item">Already have an account? <a href="/login">Click to login</a></h4>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userTypeSelect = document.getElementById('user-type');
+            const businessSectorDiv = document.getElementById('business-sector');
+            const businessSectorSelect = document.getElementById('business-sector-select');
+
+            // Hide or show the business sector based on the selected user type
+            userTypeSelect.addEventListener('change', function () {
+                const selectedValue = this.value;
+
+                if (selectedValue === 'Business Analyst' || selectedValue === 'Business Manager') {
+                    businessSectorDiv.classList.remove('hidden');
+                    businessSectorSelect.setAttribute('required', 'required');
+                } else {
+                    businessSectorDiv.classList.add('hidden');
+                    businessSectorSelect.removeAttribute('required');
+                }
+            });
+
+            // Trigger the change event on page load to handle form reloading
+            userTypeSelect.dispatchEvent(new Event('change'));
+        });
+    </script>
+</body>
+
+</html>

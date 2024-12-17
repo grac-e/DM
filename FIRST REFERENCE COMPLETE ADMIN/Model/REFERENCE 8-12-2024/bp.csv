@@ -1,0 +1,41 @@
+﻿ID,Business_Sector,Business_Function,Business_Process,Business_Activity,Business_Resource
+1,Manufacturing,Production,Material Procurement,Ordering raw materials,"Supplier Relationship Management (SRM) systems, ERP"
+2,Manufacturing,Production,Inventory Management,Tracking inventory levels,"Warehouse Management Systems (WMS), RFID"
+3,Manufacturing,Production,Production Scheduling,Creating production schedules,"APS systems, ERP"
+4,Manufacturing,Production,Quality Control,Inspecting products,"Automated inspection systems, SPC software"
+5,Manufacturing,Production,Maintenance Management,Scheduling maintenance,"CMMS, IoT sensors"
+6,Manufacturing,Production,Production Line Optimization,Balancing production lines,"Simulation software, Lean tools"
+7,Manufacturing,Production,Energy Management,Monitoring energy usage,Energy Management Systems (EMS)
+8,Manufacturing,Production,Process Optimization,Analyzing processes,"Process Mining Tools, Lean tools"
+9,Manufacturing,Production,Equipment Management,Tracking equipment usage,"IoT sensors, CMMS"
+10,Manufacturing,Production,Supply Chain Management,Coordinating with suppliers,Supply Chain Management (SCM) software
+11,Manufacturing,Production,Order Fulfillment,Processing orders,Order Management Systems (OMS)
+12,Manufacturing,Production,Logistics Management,Managing shipments,Transportation Management Systems (TMS)
+13,Manufacturing,Production,Workforce Management,Scheduling shifts,Workforce Management Systems (WMS)
+14,Manufacturing,Production,Product Lifecycle Management,Managing product data,Product Lifecycle Management (PLM) software
+15,Manufacturing,Production,Compliance Management,Ensuring regulatory compliance,Compliance Management Systems
+16,Manufacturing,Production,Product Design,Creating product designs,CAD software
+17,Manufacturing,Production,Customer Relationship Management,Managing customer interactions,CRM software
+18,Manufacturing,Production,Financial Management,Managing finances,ERP financial modules
+19,Manufacturing,Production,Research and Development (R&D),Developing new products,R&D Management Systems
+20,Manufacturing,Production,Sales Management,Managing sales pipeline,Sales Management Software
+21,Education,Administration,Student Enrollment,Processing enrollment applications,Student Information Systems (SIS)
+22,Education,Administration,Course Scheduling,Scheduling classes,Course Management Systems
+23,Education,Teaching,Curriculum Development,Designing course content,Curriculum Management Software
+24,Education,Teaching,Classroom Instruction,Delivering lectures,Learning Management Systems (LMS)
+25,Education,Administration,Faculty Management,Managing faculty records,Faculty Management Systems
+26,Education,Administration,Facility Management,Maintaining school facilities,Facility Management Software
+27,Education,Administration,Financial Management,Managing school finances,Financial Management Systems
+28,Education,Student Services,Counseling Services,Providing student counseling,Counseling Management Systems
+29,Education,Student Services,Career Services,Assisting with career planning,Career Management Systems
+30,Education,Administration,Library Management,Managing library resources,Library Management Systems
+31,Education,Teaching,Online Learning,Conducting online classes,Online Learning Platforms
+32,Education,Administration,Admissions,Managing admissions process,Admissions Management Systems
+33,Education,Administration,Student Records,Maintaining student records,Student Records Management Systems
+34,Education,Administration,Payroll Management,Processing payroll,Payroll Management Systems
+35,Education,Research,Research Project Management,Managing research projects,Research Management Systems
+36,Education,Student Services,Extracurricular Activities,Organizing extracurricular activities,Extracurricular Management Systems
+37,Education,Administration,Budgeting,Planning budgets,Budget Management Systems
+38,Education,Administration,Transport Management,Managing school transport,Transport Management Systems
+39,Education,Student Services,Health Services,Providing student health services,Health Management Systems
+40,Education,Teaching,Assessment,Conducting assessments,Assessment Management Systems
